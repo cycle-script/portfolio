@@ -588,6 +588,7 @@ section,
 
 .hero p span {
   letter-spacing: 1px;
+  color: #fb8fff;
   border-bottom: 2px solid var(--accent-color);
 }
 
