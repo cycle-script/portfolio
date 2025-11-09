@@ -1,0 +1,263 @@
+/*--------------------------------------------------------------
+# Dark Mode Override - Add this to your CSS file or create a separate dark-theme.css
+--------------------------------------------------------------*/
+
+/* Dark Mode Color Variables */
+:root { 
+  --background-color: #0a0e27; /* Deep dark blue background */
+  --default-color: #e0e0e0; /* Light gray text for readability */
+  --heading-color: #ffffff; /* White headings */
+  --accent-color: #4a9eff; /* Bright blue accent (matches your platform links) */
+  --surface-color: #151b35; /* Slightly lighter dark blue for cards/boxes */
+  --contrast-color: #ffffff; /* White for high contrast elements */
+}
+
+/* Nav Menu Dark Colors */
+:root {
+  --nav-color: #b0b8d4; /* Light blue-gray for nav links */
+  --nav-hover-color: #ffffff; /* White on hover */
+  --nav-mobile-background-color: #0a0e27; /* Match main background */
+  --nav-dropdown-background-color: #151b35; /* Match surface color */
+  --nav-dropdown-color: #b0b8d4; /* Match nav color */
+  --nav-dropdown-hover-color: #ffffff; /* White on hover */
+}
+
+/* Global body adjustments */
+body {
+  color: var(--default-color);
+  background-color: var(--background-color);
+}
+
+/* Header Dark Mode */
+.header {
+  background-color: var(--background-color);
+  border-right: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+.header .profile-img img {
+  border: 8px solid rgba(74, 158, 255, 0.2);
+}
+
+/* Hero Section Dark */
+.hero:before {
+  background: rgba(10, 14, 39, 0.85); /* Darker overlay */
+}
+
+.hero h2,
+.hero p {
+  color: #ffffff;
+}
+
+/* About Section Dark */
+.about .content h2 {
+  color: var(--heading-color);
+}
+
+.about .content ul li {
+  color: var(--default-color);
+}
+
+/* Skills Section Dark */
+.skills .progress-bar-wrap {
+  background: rgba(74, 158, 255, 0.1);
+}
+
+.skills .progress-bar {
+  background: linear-gradient(90deg, #4a9eff, #6fb1ff);
+}
+
+/* Resume Section Dark */
+.resume .resume-item {
+  border-left: 2px solid var(--accent-color);
+}
+
+.resume .resume-item h4 {
+  color: var(--default-color);
+}
+
+.resume .resume-item h5 {
+  background: rgba(74, 158, 255, 0.1);
+  color: var(--accent-color);
+}
+
+/* Portfolio Section Dark */
+.portfolio .portfolio-content .portfolio-info {
+  background: rgba(10, 14, 39, 0.95);
+}
+
+/* Services Section Dark */
+.services .service-item .icon {
+  background: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+.services .service-item:hover .icon {
+  background: var(--surface-color);
+  border: 1px solid var(--accent-color);
+}
+
+/* Contact Section Dark */
+.contact .info-wrap,
+.contact .php-email-form {
+  background-color: var(--surface-color);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+}
+
+.contact .php-email-form input[type=text],
+.contact .php-email-form input[type=email],
+.contact .php-email-form textarea {
+  background-color: rgba(10, 14, 39, 0.5);
+  border-color: rgba(74, 158, 255, 0.2);
+  color: var(--default-color);
+}
+
+.contact .php-email-form input[type=text]:focus,
+.contact .php-email-form input[type=email]:focus,
+.contact .php-email-form textarea:focus {
+  border-color: var(--accent-color);
+  background-color: rgba(10, 14, 39, 0.7);
+}
+
+/* Footer Dark */
+.footer {
+  background-color: var(--background-color);
+  border-top: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+/* Testimonials Dark */
+.testimonials .testimonial-item p {
+  background-color: var(--surface-color);
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+.testimonials .testimonial-item p::after {
+  border-top: 20px solid var(--surface-color);
+}
+
+/* Stats Section Dark */
+.stats .stats-item {
+  background: var(--surface-color);
+  border-radius: 8px;
+}
+
+/* Section Backgrounds */
+section,
+.section {
+  background-color: var(--background-color);
+}
+
+/* Alternate section background for variation */
+section:nth-child(even) {
+  background-color: rgba(21, 27, 53, 0.5);
+}
+
+/* Portfolio Details Dark */
+.portfolio-details .portfolio-info {
+  background-color: var(--surface-color);
+  box-shadow: 0px 0 30px rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(74, 158, 255, 0.1);
+}
+
+/* Service Details Dark */
+.service-details .services-list {
+  border: 1px solid rgba(74, 158, 255, 0.1);
+  background-color: var(--surface-color);
+}
+
+/* Preloader Dark */
+#preloader {
+  background: var(--background-color);
+}
+
+/* Scroll animations and elements */
+.scroll-top {
+  background-color: var(--accent-color);
+  box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+}
+
+.scroll-top:hover {
+  background-color: #6fb1ff;
+}
+
+/* Light background override for specific sections if needed */
+.light-background {
+  --background-color: #151b35;
+  --surface-color: #1a2342;
+}
+
+/* Keep the platform animation styles you already have */
+.platform {
+  position: relative;
+  display: inline-block;
+  font-weight: 600;
+  padding: 2px 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #4a9eff;
+  text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+  animation: glow 2s ease-in-out infinite;
+}
+
+.platform::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #4a9eff;
+  box-shadow: 0 0 8px rgba(74, 158, 255, 0.5);
+  animation: expandContract 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(74, 158, 255, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(74, 158, 255, 0.6), 0 0 30px rgba(74, 158, 255, 0.3);
+  }
+}
+
+@keyframes expandContract {
+  0%, 100% {
+    width: 0;
+    left: 50%;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+}
+
+.platform:hover {
+  transform: translateY(-1px);
+}
+
+/* Enhanced glow effects for dark mode */
+.social-links a:hover {
+  box-shadow: 0 0 15px rgba(74, 158, 255, 0.5);
+}
+
+/* Card hover effects */
+.service-item,
+.portfolio-item,
+.resume-item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(74, 158, 255, 0.2);
+}
+
+/* Selection color */
+::selection {
+  background: rgba(74, 158, 255, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: rgba(74, 158, 255, 0.3);
+  color: #ffffff;
+}

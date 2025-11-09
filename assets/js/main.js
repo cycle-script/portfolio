@@ -225,5 +225,18 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
+  
+  
+  // Set your birth year here
+        const birthYear = 2002;
+        
+        // Calculate age
+        function calculateAge(birthYear) {
+            const currentYear = new Date().getFullYear();
+            return currentYear - birthYear;
+        }
+
+        // Update the age in the DOM
+        document.getElementById('age').textContent = calculateAge(birthYear);
 
 })();
