@@ -1326,3 +1326,33 @@ section,
                 font-size: 1em;
             }
         }
+		
+
+.skills-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  padding: 20px;
+  padding-bottom: 20px;
+}
+
+.skill-badge {
+  background: var(--surface-color);
+  color: var(--default-color);
+  padding: 12px 24px;
+  border-radius: 25px;
+  width: 30%;
+  font-weight: 600;
+  font-size: 14px;
+  border: 2px solid rgba(74, 158, 255, 0.2);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.skill-badge:hover {
+  background: rgba(74, 158, 255, 0.1);
+  border-color: var(--accent-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(74, 158, 255, 0.3);
+}
