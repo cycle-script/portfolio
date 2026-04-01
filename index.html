@@ -36,11 +36,11 @@
       --danger:#e74c3c;--danger-bg:rgba(231,76,60,.1);
       --warn:#f39c12;
     }
- 
+
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{background:var(--bg);color:var(--text);font-family:var(--Fb);line-height:1.6;cursor:none;}
- 
+
     /* ── GLITCH OVERLAY ─────────────────────────────────── */
     #gc{position:fixed;inset:0;width:100%;height:100%;z-index:9989;pointer-events:none;opacity:0;}
     #gc.on{opacity:1;}
@@ -59,14 +59,14 @@
       background:repeating-linear-gradient(0deg,rgba(0,0,0,.55) 0,rgba(0,0,0,.55) 1px,transparent 1px,transparent 4px);}
     #gscan.on{animation:scanP .38s steps(2) forwards;}
     @keyframes scanP{0%{opacity:0;}20%{opacity:1;}70%{opacity:.5;}100%{opacity:0;}}
- 
+
     /* ── CURSOR ─────────────────────────────────────────── */
     .cur-dot{position:fixed;width:6px;height:6px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:background .3s;}
     .cur-ring{position:fixed;width:28px;height:28px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .3s,opacity .2s;opacity:.6;}
     .cur-ring.h{width:44px;height:44px;opacity:1;}
- 
+
     ::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
- 
+
     /* ── NAV ─────────────────────────────────────────────── */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:background .4s,border-color .4s;}
     .nav-in{max-width:1200px;margin:0 auto;padding:0 2rem;height:60px;display:flex;align-items:center;justify-content:space-between;}
@@ -81,16 +81,16 @@
     .tog{position:relative;width:44px;height:24px;background:var(--tog-tr);border-radius:12px;cursor:pointer;border:none;transition:background .3s;}
     .tog::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;background:var(--tog-th);border-radius:50%;transition:transform .3s,background .3s;}
     [data-theme="dark"] .tog::after{transform:translateX(20px);}
- 
+
     /* ── PAGE SYSTEM ─────────────────────────────────────── */
     .page{display:none;}.page.active{display:block;}
- 
+
     /* ── SECTIONS ────────────────────────────────────────── */
     section{max-width:1200px;margin:0 auto;padding:7rem 2rem;}
     .sec-lbl{font-family:var(--Fm);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sec-lbl);margin-bottom:1rem;display:flex;align-items:center;gap:.7rem;}
     .sec-lbl::after{content:'';flex:1;max-width:55px;height:1px;background:var(--sec-lbl);opacity:.4;}
     h2{font-family:var(--Fd);font-size:clamp(2.4rem,5vw,3.8rem);letter-spacing:.1em;margin-bottom:3rem;color:var(--text);line-height:1;}
- 
+
     /* ── HERO ─────────────────────────────────────────────── */
     #hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;position:relative;overflow:hidden;}
     #hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--hero-line) 1px,transparent 1px),linear-gradient(90deg,var(--hero-line) 1px,transparent 1px);background-size:60px 60px;opacity:.45;pointer-events:none;transition:opacity .4s;}
@@ -132,7 +132,7 @@
     .hero-social::before,.hero-social::after{content:'';display:block;width:1px;height:55px;background:var(--border);}
     .hero-social a{color:var(--text3);text-decoration:none;font-family:var(--Fm);font-size:.6rem;letter-spacing:.1em;writing-mode:vertical-rl;transition:color .2s;}
     .hero-social a:hover{color:var(--accent);}
- 
+
     /* ── ABOUT ───────────────────────────────────────────── */
     .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
     .about-text p{color:var(--text2);margin-bottom:1.2rem;font-size:1.02rem;line-height:1.8;}
@@ -144,7 +144,7 @@
     [data-theme="dark"] .d-icon{color:var(--accent);}
     .d-text{font-size:.9rem;color:var(--text2);line-height:1.6;}
     .d-text strong{color:var(--text);display:block;font-size:.8rem;margin-bottom:.15rem;}
- 
+
     /* ── SKILLS ──────────────────────────────────────────── */
     #skills{background:var(--bg2);max-width:100%;padding-left:0;padding-right:0;}
     #skills .si{max-width:1200px;margin:0 auto;padding:7rem 2rem;}
@@ -156,7 +156,7 @@
     .sk-name{font-size:.84rem;color:var(--text2);font-family:var(--Fm);}
     .sk-bw{width:88px;height:3px;background:var(--sk-bg);border-radius:2px;overflow:hidden;}
     .sk-b{height:100%;background:var(--sk-fill);border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
- 
+
     /* ── TIMELINE ─────────────────────────────────────────── */
     .tl{position:relative;padding-left:2rem;}
     .tl::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:var(--tl-line);}
@@ -171,7 +171,7 @@
     .tl-list li{font-size:.9rem;color:var(--text2);line-height:1.7;padding-left:1.2rem;position:relative;margin-bottom:.35rem;}
     .tl-list li::before{content:'→';position:absolute;left:0;color:var(--accent2);font-size:.84rem;}
     [data-theme="dark"] .tl-list li::before{content:'>';color:var(--accent);}
- 
+
     /* ── PROJECTS ─────────────────────────────────────────── */
     #projects{background:var(--bg2);max-width:100%;padding-left:0;padding-right:0;}
     #projects .si{max-width:1200px;margin:0 auto;padding:7rem 2rem;}
@@ -191,7 +191,7 @@
     .proj-link{font-family:var(--Fm);font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s;}
     [data-theme="dark"] .proj-link{color:var(--accent);}
     .proj-link:hover{border-color:currentColor;}
- 
+
     /* ── CTF CARDS ────────────────────────────────────────── */
     .ctf-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1.1rem;}
     .ctf-card{border:1px solid var(--border);padding:1.3rem;background:var(--surface);transition:border-color .2s,transform .2s;cursor:pointer;}
@@ -206,7 +206,7 @@
     .ctf-view{display:inline-block;margin-top:.75rem;font-family:var(--Fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent2);border-bottom:1px solid transparent;transition:border-color .2s;}
     [data-theme="dark"] .ctf-view{color:var(--accent);}
     .ctf-card:hover .ctf-view{border-color:currentColor;}
- 
+
     /* ── EDU / CONTACT / RESUME ──────────────────────────── */
     .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
     .edu-sec{font-family:var(--Fm);font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:1.4rem;}
@@ -232,7 +232,7 @@
     .res-cta{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.4rem;padding:4rem;border:1px solid var(--border);background:var(--surface);position:relative;overflow:hidden;}
     .res-cta::before{content:'CV';position:absolute;font-family:var(--Fd);font-size:14rem;color:var(--border);opacity:.22;right:-2rem;top:-2rem;line-height:1;pointer-events:none;}
     .res-cta p{font-size:.96rem;color:var(--text2);max-width:460px;line-height:1.75;}
- 
+
     /* ── FOOTER ───────────────────────────────────────────── */
     footer{border-top:1px solid var(--border);padding:2rem;}
     .ft-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
@@ -240,16 +240,16 @@
     .ft-links{display:flex;gap:1.5rem;}
     .ft-links a{font-family:var(--Fm);font-size:.63rem;color:var(--text3);text-decoration:none;letter-spacing:.08em;transition:color .2s;}
     .ft-links a:hover{color:var(--accent);}
- 
+
     /* ── FADE-UP ──────────────────────────────────────────── */
     .fu{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
     .fu.v{opacity:1;transform:translateY(0);}
- 
+
     /* ═══════════════════════════════════════════════════════
        CTF BLOG PAGE
     ═══════════════════════════════════════════════════════ */
     #page-ctf{background:var(--bg);min-height:100vh;padding-top:60px;}
- 
+
     /* admin bar */
     .admin-bar{max-width:1200px;margin:0 auto;padding:.7rem 2rem;
       display:flex;align-items:center;justify-content:space-between;
@@ -269,27 +269,27 @@
     .ab-btn.primary{color:var(--bg);background:var(--text);border-color:var(--text);}
     [data-theme="dark"] .ab-btn.primary{background:var(--accent);color:#000;border-color:var(--accent);}
     .ab-btn.primary:hover{opacity:.8;}
- 
+
     .blog-hd{max-width:1200px;margin:0 auto;padding:4rem 2rem 2.5rem;border-bottom:1px solid var(--border);}
     .blog-back{font-family:var(--Fm);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);cursor:pointer;border:none;background:none;display:flex;align-items:center;gap:.5rem;margin-bottom:2rem;transition:color .2s;}
     .blog-back:hover{color:var(--accent);}
     .blog-ttl{font-family:var(--Fd);font-size:clamp(3rem,7vw,6rem);letter-spacing:.06em;line-height:.95;color:var(--text);margin-bottom:.7rem;}
     .blog-sub{font-size:.94rem;color:var(--text3);font-family:var(--Fm);letter-spacing:.05em;}
- 
+
     /* add post button — admin only */
     .add-post{display:flex;align-items:center;gap:.9rem;padding:1.2rem 2rem;border:1px dashed var(--border);cursor:pointer;transition:border-color .2s;max-width:1200px;margin:1.5rem 2rem;}
     .add-post:hover{border-color:var(--accent);}
     .add-post span{font-family:var(--Fm);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);}
     .add-post .plus{color:var(--accent2);font-size:1.3rem;}
     .add-post.hidden{display:none;}
- 
+
     /* login prompt */
     .login-prompt{max-width:1200px;margin:1.5rem 2rem;padding:1rem 1.4rem;
       border:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;
       background:var(--bg2);}
     .login-prompt span{font-family:var(--Fm);font-size:.65rem;color:var(--text3);letter-spacing:.05em;}
     .login-prompt.hidden{display:none;}
- 
+
     /* blog list */
     .blog-list{max-width:1200px;margin:0 auto;padding:1.5rem 2rem;display:flex;flex-direction:column;gap:0;}
     .blog-entry{display:grid;grid-template-columns:115px 1fr auto;gap:2rem;align-items:start;
@@ -308,7 +308,7 @@
     .be-arr{font-family:var(--Fm);font-size:1.1rem;color:var(--border);transition:color .2s,transform .2s;cursor:pointer;}
     .be-body:hover ~ .be-actions .be-arr{color:var(--accent);transform:translateX(4px);}
     .be-arr:hover{color:var(--accent) !important;transform:translateX(4px);}
- 
+
     /* admin inline controls per entry */
     .entry-admin{display:none;gap:.4rem;}
     .entry-admin.visible{display:flex;}
@@ -318,7 +318,7 @@
     .ea-btn:hover{color:var(--accent);border-color:var(--accent);}
     .ea-btn.del{color:var(--danger);}
     .ea-btn.del:hover{background:var(--danger-bg);border-color:var(--danger);}
- 
+
     /* single post view */
     .post-view{max-width:760px;margin:0 auto;padding:3rem 2rem 6rem;}
     .post-view.hidden{display:none;}
@@ -343,7 +343,7 @@
     .post-nav{display:flex;justify-content:space-between;margin-top:2.8rem;padding-top:1.4rem;border-top:1px solid var(--border);}
     .pnb{font-family:var(--Fm);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);cursor:pointer;background:none;border:1px solid var(--border);padding:.58rem 1.1rem;transition:all .2s;}
     .pnb:hover{color:var(--accent);border-color:var(--accent);}
- 
+
     /* ── MODALS ───────────────────────────────────────────── */
     .modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;align-items:center;justify-content:center;}
     .modal-ov.open{display:flex;}
@@ -367,14 +367,34 @@
     .ms.danger:hover{opacity:.8;}
     .m-error{font-family:var(--Fm);font-size:.65rem;color:var(--danger);letter-spacing:.05em;display:none;}
     .m-error.show{display:block;}
- 
+
     /* export notice */
     .export-notice{padding:.9rem 1.1rem;border:1px solid var(--warn);background:rgba(230,126,34,.08);font-family:var(--Fm);font-size:.65rem;color:var(--warn);letter-spacing:.04em;line-height:1.6;}
- 
+
     /* confirm modal */
     .confirm-msg{font-size:.88rem;color:var(--text2);line-height:1.7;}
     .confirm-msg strong{color:var(--danger);}
- 
+
+    /* ── IMAGE UPLOAD ─────────────────────────────────── */
+    .img-drop-zone{border:1px dashed var(--border);padding:1.2rem 1rem;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;position:relative;}
+    .img-drop-zone:hover,.img-drop-zone.drag-over{border-color:var(--accent);background:var(--glow);}
+    .img-drop-zone input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .img-drop-label{font-family:var(--Fm);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);pointer-events:none;display:flex;flex-direction:column;align-items:center;gap:.4rem;}
+    .img-drop-label svg{opacity:.35;}
+    .img-drop-label span{color:var(--accent2);}
+    [data-theme="dark"] .img-drop-label span{color:var(--accent);}
+    .img-strip{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.5rem;}
+    .img-thumb{position:relative;width:80px;height:64px;border:1px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color .2s;flex-shrink:0;}
+    .img-thumb:hover{border-color:var(--accent);}
+    .img-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+    .img-thumb-del{position:absolute;top:2px;right:2px;width:16px;height:16px;border-radius:50%;background:var(--danger);color:#fff;font-size:.6rem;line-height:16px;text-align:center;cursor:pointer;opacity:0;transition:opacity .15s;font-family:var(--Fm);font-weight:bold;}
+    .img-thumb:hover .img-thumb-del{opacity:1;}
+    .img-thumb-insert{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-family:var(--Fm);font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;text-align:center;padding:.18rem 0;opacity:0;transition:opacity .15s;}
+    .img-thumb:hover .img-thumb-insert{opacity:1;}
+    .post-body img{max-width:100%;height:auto;display:block;margin:1.2rem 0;border:1px solid var(--border);}
+    [data-theme="dark"] .post-body img{filter:brightness(.92) contrast(1.04);box-shadow:0 0 20px rgba(0,212,255,.08);}
+    .img-caption{font-family:var(--Fm);font-size:.7rem;color:var(--text3);letter-spacing:.06em;margin-top:-.8rem;margin-bottom:1rem;text-align:center;font-style:italic;}
+
     /* ── MOBILE ───────────────────────────────────────────── */
     @media(max-width:860px){
       .hero-inner{flex-direction:column-reverse;gap:2.5rem;}
@@ -438,15 +458,9 @@
         <div class="hero-photo-frame">
           <!--
             TO ADD YOUR PHOTO: replace the div below with:
-            <img src="img/castro.jpeg" alt="Castro Nicholas" />
-          
-          <div class="ph-placeholder">
-            <svg width="52" height="52" viewBox="0 0 52 52" fill="none"><circle cx="26" cy="18" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M4 48c0-12.15 9.85-22 22-22s22 9.85 22 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <span>Add your photo — see HTML comment above</span>
-          </div>
+            <img src="photo.jpg" alt="Castro Nicholas" />
           -->
-
-          <img src="img/castro.jpeg" alt="Castro Nicholas" />
+<img src="img/castro.jpeg" alt="Castro Nicholas" />
         </div>
       </div>
     </div>
@@ -518,7 +532,7 @@
         <div class="tl-org">Hack The Box, Uganda</div>
         <div class="tl-desc">I serve as a host and speaker at Hack The Box Meetup Kampala, where I lead hands-on cybersecurity sessions focused on practical learning and real-world techniques. My role involves guiding participants through topics such as system enumeration, vulnerability exploitation, and effective documentation during technical assessments.</div>
       </div>
-       
+
       <div class="tl-item fu">
         <div class="tl-date">2025</div>
         <div class="tl-title">Firewall Installation &amp; Network Redesign</div>
@@ -530,16 +544,12 @@
           <li>Optimized traffic flow and security posture via strategic VLAN implementation and zone-based policies.</li>
         </ul>
       </div>
-
-      
       <div class="tl-item fu">
         <div class="tl-date">2023 – Present</div>
         <div class="tl-title">Cybersecurity Community Contributor</div>
         <div class="tl-org">Uguntu Hacking Community, Uganda</div>
         <div class="tl-desc">Active contributor to Uganda's growing cybersecurity ecosystem — CTF competitions, knowledge sharing, and community-driven security awareness.</div>
       </div>
-
-
     </div>
   </section>
 
@@ -734,8 +744,20 @@
       <div class="mf"><label class="ml">Flag (optional)</label><input class="mi" id="mFlag" placeholder="picoCTF{...}"/></div>
     </div>
     <div class="mf">
-      <label class="ml">Writeup (Markdown: ## headings, ``` code blocks, `inline`)</label>
-      <textarea class="mta" id="mBody" placeholder="## Overview&#10;Describe the challenge...&#10;&#10;## Approach&#10;How you tackled it...&#10;&#10;## Solution&#10;Final exploit/steps..."></textarea>
+      <label class="ml">Writeup (Markdown: ## headings, ``` code blocks, `inline`, ![alt](img-id) for images)</label>
+      <textarea class="mta" id="mBody" placeholder="## Overview&#10;Describe the challenge...&#10;&#10;## Approach&#10;How you tackled it...&#10;&#10;## Solution&#10;Final exploit/steps...&#10;&#10;Insert images with the panel below, then click a thumbnail to paste the tag."></textarea>
+    </div>
+    <!-- IMAGE UPLOAD PANEL -->
+    <div class="mf">
+      <label class="ml">Images <span style="font-weight:normal;opacity:.6;">(upload, paste, or drag &amp; drop — click thumbnail to insert into body)</span></label>
+      <div class="img-drop-zone" id="imgDropZone">
+        <input type="file" id="imgFileInput" accept="image/*" multiple/>
+        <div class="img-drop-label">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="2" y="6" width="24" height="18" rx="1.5" stroke="currentColor" stroke-width="1.4"/><circle cx="9" cy="13" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M2 21l7-5 4 3 5-6 8 8" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M18 6V2m0 0l-2 2m2-2l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <span>Click to upload</span> or drag &amp; drop or paste (Ctrl+V)
+        </div>
+      </div>
+      <div class="img-strip" id="imgStrip"></div>
     </div>
     <div class="export-notice">
       💡 After saving, click <strong>Export writeups.js</strong> in the admin bar and commit the file to GitHub to make changes permanent.
@@ -874,6 +896,10 @@ function openAddModal() {
   ['mTitle','mCat','mTags','mFlag','mBody'].forEach(id => document.getElementById(id).value = '');
   document.getElementById('mPlatform').value = 'picoCTF';
   document.getElementById('mDiff').value = 'medium';
+  // Generate a temp id for new post images
+  const tempId = 'new-' + Date.now();
+  document.getElementById('writeupModal').setAttribute('data-tempid', tempId);
+  initImagePanel(tempId);
   document.getElementById('writeupModal').classList.add('open');
   document.getElementById('mTitle').focus();
 }
@@ -892,6 +918,8 @@ function openEditModal(id) {
   document.getElementById('mTags').value = p.tags.join(', ');
   document.getElementById('mFlag').value = p.flag || '';
   document.getElementById('mBody').value = p.body;
+  document.getElementById('writeupModal').setAttribute('data-tempid', '');
+  initImagePanel(id);
   document.getElementById('writeupModal').classList.add('open');
   document.getElementById('mTitle').focus();
 }
@@ -919,8 +947,14 @@ function saveWriteup() {
       flag: document.getElementById('mFlag').value.trim()
     });
   } else {
-    // New post
+    // New post — migrate images from temp key to real id
     const id = title.toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'') + '-' + Date.now();
+    const tempId = document.getElementById('writeupModal').getAttribute('data-tempid');
+    if (tempId) {
+      const imgs = getImages(tempId);
+      if (imgs.length) saveImages(id, imgs);
+      deleteImages(tempId);
+    }
     posts.unshift({
       id, title, tags, body, excerpt,
       platform: document.getElementById('mPlatform').value,
@@ -953,6 +987,7 @@ function closeDeleteModal() { document.getElementById('deleteModal').classList.r
 
 function confirmDelete() {
   if (!adminLoggedIn || !deletingId) return;
+  deleteImages(deletingId); // clean up images for this writeup
   const posts = getPosts().filter(p => p.id !== deletingId);
   savePosts(posts);
   closeDeleteModal();
@@ -1024,7 +1059,7 @@ function openPost(id) {
       <span class="ctf-diff ${dc[p.difficulty]||'dm'}">● ${p.difficulty[0].toUpperCase()+p.difficulty.slice(1)}</span>
       ${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}
     </div>
-    <div class="post-body">${md(p.body)}</div>
+    <div class="post-body">${md(p.body, p.id)}</div>
     ${p.flag?`<div class="post-flag">🚩 ${p.flag}</div>`:''}`;
   window.scrollTo(0,0);
 }
@@ -1033,7 +1068,15 @@ function closePost() { currentPostId=null; renderBlogList(); }
 function openWriteup(id) { showPage('ctf'); setTimeout(()=>openPost(id),80); }
 
 /* ─── MARKDOWN RENDERER ─────────────────────────────── */
-function md(s) {
+function md(s, postId) {
+  // Resolve ![alt](img-id) references from stored images
+  s = s.replace(/!\[([^\]]*)]\(([^)]+)\)/g, (match, alt, imgId) => {
+    const imgs = getImages(postId || currentPostId || editingId || '');
+    const img  = imgs.find(x => x.id === imgId);
+    if (!img) return match;
+    const cap  = alt ? `<div class="img-caption">${alt}</div>` : '';
+    return `<img src="${img.data}" alt="${alt}" />${cap}`;
+  });
   return s
     .replace(/^## (.+)$/gm,'<h3>$1</h3>')
     .replace(/^# (.+)$/gm,'<h3>$1</h3>')
@@ -1042,8 +1085,116 @@ function md(s) {
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
     .replace(/\n\n/g,'</p><p>')
     .replace(/^/,'<p>').replace(/$/,'</p>')
-    .replace(/<p>(<h3|<pre)/g,'$1')
+    .replace(/<p>(<h3|<pre|<img)/g,'$1')
     .replace(/<\/(h3|pre)><\/p>/g,'</$1>');
+}
+
+/* ─── IMAGE STORE ─────────────────────────────────── */
+// Images stored separately: key = 'cn_imgs_<postId>'
+// Each entry: { id, name, data (base64 data-url) }
+function imgKey(postId) { return 'cn_imgs_' + postId; }
+
+function getImages(postId) {
+  if (!postId) return [];
+  try { return JSON.parse(localStorage.getItem(imgKey(postId)) || '[]'); }
+  catch(e) { return []; }
+}
+
+function saveImages(postId, imgs) {
+  if (!postId) return;
+  localStorage.setItem(imgKey(postId), JSON.stringify(imgs));
+}
+
+function deleteImages(postId) {
+  localStorage.removeItem(imgKey(postId));
+}
+
+function addImage(postId, file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const imgs = getImages(postId);
+      const id   = 'img-' + Date.now() + '-' + Math.random().toString(36).slice(2,7);
+      imgs.push({ id, name: file.name, data: e.target.result });
+      saveImages(postId, imgs);
+      resolve(id);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+/* ─── IMAGE PANEL (modal) ─────────────────────────── */
+let _modalPostId = null; // the post id being edited/added
+
+function initImagePanel(postId) {
+  _modalPostId = postId;
+  renderImgStrip();
+
+  // File input
+  const inp = document.getElementById('imgFileInput');
+  inp.onchange = async e => {
+    for (const f of e.target.files) await processImageFile(f);
+    inp.value = '';
+  };
+
+  // Drag and drop on zone
+  const zone = document.getElementById('imgDropZone');
+  zone.ondragover = e => { e.preventDefault(); zone.classList.add('drag-over'); };
+  zone.ondragleave = () => zone.classList.remove('drag-over');
+  zone.ondrop = async e => {
+    e.preventDefault(); zone.classList.remove('drag-over');
+    for (const f of e.dataTransfer.files) {
+      if (f.type.startsWith('image/')) await processImageFile(f);
+    }
+  };
+}
+
+// Paste anywhere in the modal
+document.addEventListener('paste', async e => {
+  if (!document.getElementById('writeupModal').classList.contains('open')) return;
+  if (!_modalPostId) return;
+  for (const item of e.clipboardData.items) {
+    if (item.type.startsWith('image/')) {
+      const f = item.getAsFile();
+      if (f) await processImageFile(f);
+    }
+  }
+});
+
+async function processImageFile(file) {
+  if (!_modalPostId) return;
+  const id = await addImage(_modalPostId, file);
+  renderImgStrip();
+  return id;
+}
+
+function renderImgStrip() {
+  const strip = document.getElementById('imgStrip');
+  if (!strip || !_modalPostId) return;
+  const imgs = getImages(_modalPostId);
+  strip.innerHTML = imgs.map(img => `
+    <div class="img-thumb" title="Click to insert into body">
+      <img src="${img.data}" alt="${img.name}"/>
+      <div class="img-thumb-del" onclick="removeImage('${img.id}')">×</div>
+      <div class="img-thumb-insert" onclick="insertImageTag('${img.id}','${img.name}')">insert</div>
+    </div>`).join('');
+}
+
+function removeImage(imgId) {
+  if (!_modalPostId) return;
+  const imgs = getImages(_modalPostId).filter(x => x.id !== imgId);
+  saveImages(_modalPostId, imgs);
+  renderImgStrip();
+}
+
+function insertImageTag(imgId, name) {
+  const ta  = document.getElementById('mBody');
+  const tag = `![${name}](${imgId})`;
+  const pos = ta.selectionStart;
+  ta.value  = ta.value.slice(0, pos) + '\n' + tag + '\n' + ta.value.slice(pos);
+  ta.selectionStart = ta.selectionEnd = pos + tag.length + 2;
+  ta.focus();
 }
 
 /* ─── CTF SUMMARY (main page) ───────────────────────── */
@@ -1067,20 +1218,12 @@ function renderCtfSummary() {
   document.getElementById('ctfSummaryGrid').innerHTML = cards + more;
   document.querySelectorAll('#ctfSummaryGrid .fu').forEach(el => fObs.observe(el));
 }
-
-/* ─── MODAL OVERLAY CLOSE ───────────────────────────── */
-['loginModal','writeupModal','deleteModal'].forEach(id => {
-  document.getElementById(id).addEventListener('click', function(e){ if(e.target===this) this.classList.remove('open'); });
-});
-
-/* ─── INIT ──────────────────────────────────────────── */
-renderCtfSummary();
-
 // Auto-update copyright year in all footers
 document.querySelectorAll('.ft-copy').forEach(el => {
   el.textContent = el.textContent.replace(/\d{4}/, new Date().getFullYear());
 });
 
+renderCtfSummary();
 </script>
 </body>
 </html>
