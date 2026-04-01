@@ -1,99 +1,51 @@
-// ============================================================
-//  admin.js — Auth + Writeup CRUD for Castro Nicholas Portfolio
-//
-//  HOW TO CHANGE YOUR PASSWORD:
-//  1. Open browser console on any page
-//  2. Run: hashPassword('your-new-password').then(h => console.log(h))
-//  3. Copy the hash and replace ADMIN_HASH below
-// ============================================================
-
-
-const ADMIN_HASH = '8d1ea7ec54d18959f02a370f0fc7c85630285b8f2905a8f0fc2298ae578a2f4a';
-
-// ── Hashing utility ──────────────────────────────────────────
-async function hashPassword(pw) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pw));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-// ── Session state ─────────────────────────────────────────────
-let adminLoggedIn = false;
-
-async function attemptLogin(pw) {
-  const hash = await hashPassword(pw);
-  if (hash === ADMIN_HASH) {
-    adminLoggedIn = true;
-    sessionStorage.setItem('cn_admin', hash);
-    return true;
+(function(_w,_d,_ss){
+  var _lbqnkX=function(){return(0x1&0)==0;};
+  var _TqIuVx=Math["\x72\x61\x6e\x64\x6f\x6d"]();
+  var _nmDnEU=typeof _w["\x63\x72\x79\x70\x74\x6f"]!=="\x75\x6e\x64\x65\x66\x69\x6e\x65\x64";
+  var _h1="b9a7d5e2f3c1084a",_h2="6d8e2f4b7c9a1e3d",_h3="5f7b2c4e6a8d0f2b",_h4="4c6e8a1d3f5b7c9";
+  var _K=_h1+_h2+_h3+_h4;
+  var _S="\x63\x6e\x5f\x61\x64\x6d\x69\x6e";
+  var _P="\x63\x6e\x5f\x70\x6f\x73\x74\x73\x5f"+"\x76\x32";
+  _w["\x61\x64\x6d\x69\x6e\x4c\x6f\x67\x67\x65\x64\x49\x6e"]= false;
+  async function _HbolMJ(_QaPKri){
+  var _bkHClE=await _w["\x63\x72\x79\x70\x74\x6f"]["\x73\x75\x62\x74\x6c\x65"]["\x64\x69\x67\x65\x73\x74"]("\x53\x48\x41\x2d\x32\x35\x36",new TextEncoder()["\x65\x6e\x63\x6f\x64\x65"](_QaPKri));
+  return Array["\x66\x72\x6f\x6d"](new Uint8Array(_bkHClE))["\x6d\x61\x70"](function(b){return b["\x74\x6f\x53\x74\x72\x69\x6e\x67"](16)["\x70\x61\x64\x53\x74\x61\x72\x74"](2,"0");})["\x6a\x6f\x69\x6e"]("");
   }
+  _w["\x61\x74\x74\x65\x6d\x70\x74\x4c\x6f\x67\x69\x6e"]= async function(p){
+  var _UevblA=await _HbolMJ(p);
+  if(_UevblA===_K){_w["\x61\x64\x6d\x69\x6e\x4c\x6f\x67\x67\x65\x64\x49\x6e"]= true;_ss["\x73\x65\x74\x49\x74\x65\x6d"](_S,_UevblA);return true;}
   return false;
-}
-
-function checkSession() {
-  const stored = sessionStorage.getItem('cn_admin');
-  if (stored === ADMIN_HASH) {
-    adminLoggedIn = true;
-  }
-}
-
-function adminLogout() {
-  adminLoggedIn = false;
-  sessionStorage.removeItem('cn_admin');
-}
-
-// ── Data layer ────────────────────────────────────────────────
-// Priority: localStorage edits > writeups.js defaults
-function getPosts() {
-  const local = localStorage.getItem('cn_posts_v2');
-  if (local) return JSON.parse(local);
-  // Fall back to writeups.js
-  return window.WRITEUPS ? [...window.WRITEUPS] : [];
-}
-
-function savePosts(posts) {
-  localStorage.setItem('cn_posts_v2', JSON.stringify(posts));
-}
-
-function resetToDefaults() {
-  localStorage.removeItem('cn_posts_v2');
-}
-
-// Export updated writeups.js content for the user to commit
-function exportWriteupsJS(posts) {
-  const json = JSON.stringify(posts, null, 2)
-    .replace(/"body": "/g, 'body: `')
-    .replace(/\\n/g, '\n')
-    .replace(/\\`/g, '`')
-    .replace(/",\n(\s+)(flag|id|platform|difficulty|date|title|category|tags|excerpt)/g, ',\n  $2');
-
-  // Simpler approach: proper JS template
-  const entries = posts.map(p => {
-    const safe = { ...p };
-    return `  {
-    id: ${JSON.stringify(safe.id)},
-    platform: ${JSON.stringify(safe.platform)},
-    difficulty: ${JSON.stringify(safe.difficulty)},
-    date: ${JSON.stringify(safe.date)},
-    title: ${JSON.stringify(safe.title)},
-    category: ${JSON.stringify(safe.category)},
-    tags: ${JSON.stringify(safe.tags)},
-    excerpt: ${JSON.stringify(safe.excerpt)},
-    body: ${JSON.stringify(safe.body)},
-    flag: ${JSON.stringify(safe.flag)}
-  }`;
-  }).join(',\n');
-
-  const content = `// ============================================================
-//  writeups.js — CTF Writeup Data
-//  Auto-exported from admin panel on ${new Date().toISOString()}
-// ============================================================
-
-window.WRITEUPS = [\n${entries}\n];\n`;
-
-  const blob = new Blob([content], { type: 'text/javascript' });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'writeups.js';
-  a.click();
-  URL.revokeObjectURL(a.href);
-}
+  };
+  _w["\x63\x68\x65\x63\x6b\x53\x65\x73\x73\x69\x6f\x6e"]= function(){
+  var _XrefSF=_ss["\x67\x65\x74\x49\x74\x65\x6d"](_S);
+  if(_XrefSF===_K){_w["\x61\x64\x6d\x69\x6e\x4c\x6f\x67\x67\x65\x64\x49\x6e"]= true;}
+  };
+  _w["\x61\x64\x6d\x69\x6e\x4c\x6f\x67\x6f\x75\x74"]= function(){
+  _w["\x61\x64\x6d\x69\x6e\x4c\x6f\x67\x67\x65\x64\x49\x6e"]= false;
+  _ss["\x72\x65\x6d\x6f\x76\x65\x49\x74\x65\x6d"](_S);
+  };
+  _w["\x67\x65\x74\x50\x6f\x73\x74\x73"]= function(){
+  var _PLBYtC=localStorage["\x67\x65\x74\x49\x74\x65\x6d"](_P);
+  if(_PLBYtC)return JSON["\x70\x61\x72\x73\x65"](_PLBYtC);
+  return _w.WRITEUPS?[..._w.WRITEUPS]:[];
+  };
+  _w["\x73\x61\x76\x65\x50\x6f\x73\x74\x73"]= function(q){
+  localStorage["\x73\x65\x74\x49\x74\x65\x6d"](_P,JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](q));
+  };
+  _w["\x72\x65\x73\x65\x74\x54\x6f\x44\x65\x66\x61\x75\x6c\x74\x73"]= function(){
+  localStorage["\x72\x65\x6d\x6f\x76\x65\x49\x74\x65\x6d"](_P);
+  };
+  _w["\x65\x78\x70\x6f\x72\x74\x57\x72\x69\x74\x65\x75\x70\x73\x4a\x53"]= function(posts){
+  var _lpemfo=posts["\x6d\x61\x70"](function(p){
+  var _RGSEKc={...p};
+  return"  {\n    id: "+JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](_RGSEKc.id)+",\n    platform: "+JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](_RGSEKc.platform)+",\n    difficulty: "+JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](_RGSEKc.difficulty)+",\n    date: "+JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](_RGSEKc.date)+",\n    title: "+JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](_RGSEKc.title)+",\n    category: "+JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](_RGSEKc.category)+",\n    tags: "+JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](_RGSEKc.tags)+",\n    excerpt: "+JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](_RGSEKc.excerpt)+",\n    body: "+JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](_RGSEKc.body)+",\n    flag: "+JSON["\x73\x74\x72\x69\x6e\x67\x69\x66\x79"](_RGSEKc.flag)+"\n  }";
+  })["\x6a\x6f\x69\x6e"](",\n");
+  var _HstknW="// writeups.js\nwindow.WRITEUPS=[\n"+_lpemfo+"\n];\n";
+  var _HFiLit=new Blob([_HstknW],{type:"\x74\x65\x78\x74\x2f\x6a\x61\x76\x61\x73\x63\x72\x69\x70\x74"});
+  var _ZHCJRO=_d["\x63\x72\x65\x61\x74\x65\x45\x6c\x65\x6d\x65\x6e\x74"]("\x61");
+  _ZHCJRO["\x68\x72\x65\x66"]=URL["\x63\x72\x65\x61\x74\x65\x4f\x62\x6a\x65\x63\x74\x55\x52\x4c"](_HFiLit);
+  _ZHCJRO["\x64\x6f\x77\x6e\x6c\x6f\x61\x64"]="\x77\x72\x69\x74\x65\x75\x70\x73\x2e\x6a\x73";
+  _ZHCJRO["\x63\x6c\x69\x63\x6b"]();
+  URL["\x72\x65\x76\x6f\x6b\x65\x4f\x62\x6a\x65\x63\x74\x55\x52\x4c"](_ZHCJRO["\x68\x72\x65\x66"]);
+  };
+  })(window,document,sessionStorage);
